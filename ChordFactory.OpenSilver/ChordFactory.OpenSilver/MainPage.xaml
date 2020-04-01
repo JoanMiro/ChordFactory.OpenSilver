@@ -1,0 +1,95 @@
+﻿<Page
+    x:Class="ChordFactory.OpenSilver.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ChordFactory.OpenSilver"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:music="clr-namespace:Openfeature.Music;assembly=Openfeature.Music"
+    mc:Ignorable="d">
+    <Page.Content>
+        <Grid
+            x:Name="LayoutRoot"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Grid.Children>
+                <StackPanel Orientation="Horizontal">
+                    <Slider
+                        x:Name="ZoomSlider"
+                        Height="200"
+                        Margin="10,5,5,5"
+                        IsDirectionReversed="True"
+                        LargeChange="0.1"
+                        Maximum="2"
+                        Minimum="0.5"
+                        Orientation="Vertical"
+                        SmallChange="0.1"
+                        Value="1" />
+                    <StackPanel x:Name="MainContent">
+                        <StackPanel.RenderTransform>
+                            <ScaleTransform x:Name="MainContent_ScaleTransform" />
+                        </StackPanel.RenderTransform>
+                        <TextBlock
+                            Margin="20,10,0,10"
+                            FontFamily="Verdana"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Foreground="DarkSlateBlue"
+                            Text="Openfeature Silverlight Chord Factory" />
+                        <music:GrandStaff
+                            x:Name="grandStaff"
+                            Margin="20,0,0,20"
+                            Background="Transparent"
+                            Bars="4" />
+                        <!--  VisibleStave="Treble"  -->
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="20,0,0,0">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource TitleLabel}" Text="Chord: " />
+                                    <ComboBox
+                                        x:Name="ChordsComboBox"
+                                        DisplayMemberPath="Description"
+                                        ItemsSource="{Binding Path=Chords}"
+                                        Style="{StaticResource ConfigCombo}" />
+                                </StackPanel>
+                                <music:PianoKeyboard
+                                    x:Name="pianoKeyboardChord"
+                                    Width="400"
+                                    Height="200"
+                                    HorizontalAlignment="Left"
+                                    Octaves="2" />
+                                <TextBlock
+                                    x:Name="chordName"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource InfoStyle}"
+                                    Text="CHORD" />
+                            </StackPanel>
+                            <StackPanel Margin="20,0,0,0">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource TitleLabel}" Text="Scale: " />
+                                    <ComboBox
+                                        x:Name="ScalesComboBox"
+                                        DisplayMemberPath="Description"
+                                        ItemsSource="{Binding Path=Scales}"
+                                        Style="{StaticResource ConfigCombo}" />
+                                </StackPanel>
+                                <music:PianoKeyboard
+                                    x:Name="pianoKeyboardScale"
+                                    Width="400"
+                                    Height="200"
+                                    HorizontalAlignment="Left"
+                                    Octaves="2" />
+                                <TextBlock
+                                    x:Name="scaleName"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource InfoStyle}"
+                                    Text="SCALE" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid.Children>
+        </Grid>
+    </Page.Content>
+</Page>
