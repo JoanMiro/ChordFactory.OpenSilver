@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="ChordFactory.OpenSilver.controls.GrandStaff"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ChordFactory.OpenSilver.controls">
+    <UserControl.Content>
+        <Grid x:Name="GrandStaffGrid"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.Children>
+                <Grid x:Name="TrebleClefGrid" Grid.Row="0">
+                    <Grid.Children>
+                        <Grid
+                                x:Name="TrebleNotePositionGrid"
+                                Margin="100,-10,0,0"
+                                VerticalAlignment="Center"
+                                Background="Transparent" />
+                        <TextBlock x:Name="TrebleClef" FontSize="56" />
+                    </Grid.Children>
+                </Grid>
+                <Grid x:Name="BassClefGrid" Grid.Row="1">
+                    <Grid.Children>
+                        <Grid
+                                x:Name="BassNotePositionGrid"
+                                Margin="100,-10,0,0"
+                                VerticalAlignment="Center"
+                                Background="Transparent" />
+                        <TextBlock x:Name="BassClef" FontSize="56" />
+                    </Grid.Children>
+                </Grid>
+            </Grid.Children>
+        </Grid>
+    </UserControl.Content>
+</UserControl>

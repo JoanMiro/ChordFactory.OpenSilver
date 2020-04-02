@@ -1,0 +1,10 @@
+﻿<UserControl
+    x:Class="ChordFactory.OpenSilver.controls.TestControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ChordFactory.OpenSilver.controls">
+    
+    <Grid>
+
+    </Grid>
+</UserControl>

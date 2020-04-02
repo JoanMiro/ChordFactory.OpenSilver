@@ -26,12 +26,32 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="controls\GrandStaff.xaml" />
+    <None Remove="controls\Octave.xaml" />
+    <None Remove="controls\PianoKey.xaml" />
+    <None Remove="controls\PianoKeyboard.xaml" />
+    <None Remove="controls\TestControl.xaml" />
     <None Remove="EmptyOpenSilverMigrationApplication.csproj.vspscc" />
     <None Remove="MainPage - Copy.xaml" />
     <None Remove="MyTemplate_rename_me_after_export.vstemplate" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="controls\GrandStaff.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\Octave.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\PianoKey.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\PianoKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\TestControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <Content Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -41,10 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Openfeature.Music\Openfeature.Music.csproj" />
   </ItemGroup>
 
   <ItemGroup>

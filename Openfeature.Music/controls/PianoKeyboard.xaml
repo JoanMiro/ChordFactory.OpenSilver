@@ -1,0 +1,13 @@
+﻿<UserControl
+    x:Class="Openfeature.Music.controls.PianoKeyboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Openfeature.Music.controls">
+    <UserControl.Content>
+        <StackPanel
+            x:Name="KeyboardStackPanel"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Orientation="Horizontal" />
+    </UserControl.Content>
+</UserControl>

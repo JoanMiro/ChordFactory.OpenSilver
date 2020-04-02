@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChordFactory.OpenSilver.Sim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChordFactory.OpenSilver.Browser", "ChordFactory.OpenSilver\ChordFactory.OpenSilver.Browser\ChordFactory.OpenSilver.Browser.csproj", "{3CD0AF63-87E4-4A8E-B9FE-321DC499C9B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Openfeature.Music", "Openfeature.Music\Openfeature.Music.csproj", "{27C2E26B-D530-4650-BC56-A2280B58C09E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{3CD0AF63-87E4-4A8E-B9FE-321DC499C9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD0AF63-87E4-4A8E-B9FE-321DC499C9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD0AF63-87E4-4A8E-B9FE-321DC499C9B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27C2E26B-D530-4650-BC56-A2280B58C09E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27C2E26B-D530-4650-BC56-A2280B58C09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27C2E26B-D530-4650-BC56-A2280B58C09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27C2E26B-D530-4650-BC56-A2280B58C09E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

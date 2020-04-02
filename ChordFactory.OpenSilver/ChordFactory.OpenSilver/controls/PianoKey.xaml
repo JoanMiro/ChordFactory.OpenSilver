@@ -1,0 +1,504 @@
+﻿<UserControl
+    x:Class="ChordFactory.OpenSilver.controls.PianoKey"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ChordFactory.OpenSilver.controls"
+    Background="#FF1F3B53" Foreground="#FF000000" Padding="3" BorderThickness="1">
+    <UserControl.BorderBrush>
+        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Offset="0" Color="#FF000000" />
+                <GradientStop Offset="1" Color="#FF000000" />
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+    </UserControl.BorderBrush>
+    <UserControl.Content>
+        <Border
+            x:Name="border"
+            BorderThickness="2"
+            CornerRadius="4">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="#FFA3AEB9" />
+                        <GradientStop Offset="1" Color="#FF617584" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Child>
+                <Grid Background="Ivory">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                        <RowDefinition Height="26" />
+                    </Grid.RowDefinitions>
+                    <Grid.Children>
+                        <!--
+                                RadiusX="3"
+                                RadiusY="3"
+                            -->
+                        <Rectangle
+                                x:Name="BackgroundRectangle"
+                                Grid.RowSpan="4"
+                                Margin="1,0,1,1"
+                                Fill="#FF1F3B53">
+                            <!--<Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                    <GradientStop Offset="0.915" Color="#FFFFFFFF" />
+                                    <GradientStop Offset="0.089" Color="#4F000000" />
+                                    <GradientStop Offset="0" Color="#9EFFFFFF" />
+                                    <GradientStop Offset="1" Color="#FFFFFFFF" />
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>-->
+                        </Rectangle>
+                        <Ellipse
+                                x:Name="RootEllipse"
+                                Grid.Row="3"
+                                Width="18"
+                                Height="18"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Stroke="DarkBlue"
+                                StrokeThickness="0.5"
+                                Visibility="Collapsed">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <RadialGradientBrush.GradientStops>
+                                        <GradientStop Offset="1" Color="#FF1F3B53" />
+                                        <GradientStop Offset="0.95" Color="White" />
+                                        <GradientStop Offset="0" Color="OrangeRed" />
+                                    </RadialGradientBrush.GradientStops>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter
+                                x:Name="RootContentPresenter"
+                                Grid.Row="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Visibility="Collapsed">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                            <ContentPresenter.Content>
+                                <TextBlock
+                                    x:Name="RootTextBlock"
+                                    FontSize="14"
+                                    Text="R" />
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                        <Ellipse
+                                x:Name="ScaleEllipse"
+                                Grid.Row="1"
+                                Width="18"
+                                Height="18"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Stroke="DarkBlue"
+                                StrokeThickness="0.5"
+                                Visibility="Collapsed">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <RadialGradientBrush.GradientStops>
+                                        <GradientStop Offset="1" Color="#FF1F3B53" />
+                                        <GradientStop Offset="0.95" Color="White" />
+                                        <GradientStop Offset="0" Color="LightBlue" />
+                                    </RadialGradientBrush.GradientStops>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter
+                                x:Name="ScaleContentPresenter"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Visibility="Collapsed">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                            <ContentPresenter.Content>
+                                <TextBlock
+                                    x:Name="ScaleTextBlock"
+                                    FontSize="14"
+                                    Text="'{TemplateBinding Content}'" />
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                        <Ellipse
+                                x:Name="ChordEllipse"
+                                Grid.Row="2"
+                                Width="18"
+                                Height="18"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Stroke="DarkBlue"
+                                StrokeThickness="0.5"
+                                Visibility="Collapsed">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <RadialGradientBrush.GradientStops>
+                                        <GradientStop Offset="1" Color="#FF1F3B53" />
+                                        <GradientStop Offset="0.95" Color="White" />
+                                        <GradientStop Offset="0" Color="LightGreen" />
+                                    </RadialGradientBrush.GradientStops>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter
+                                x:Name="ChordContentPresenter"
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Opacity="0.95"
+                                Visibility="Collapsed">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                            <ContentPresenter.Content>
+                                <TextBlock
+                                    x:Name="ChordTextBlock"
+                                    FontSize="14"
+                                    Text="'{TemplateBinding ChordSymbol}'" />
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </Grid.Children>
+                </Grid>
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="00:00:00.2500000" To="MouseOver" />
+                            <VisualTransition GeneratedDuration="00:00:00.2500000" From="MouseOver" />
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF09283F" />
+                                </ColorAnimationUsingKeyFrames>
+                                <ColorAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineColorKeyFrame KeyTime="00:00:00" Value="#FF3F4F5E" />
+                                </ColorAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <ColorAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootEllipse"
+                                            Storyboard.TargetProperty="(Ellipse.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineColorKeyFrame KeyTime="00:00:00" Value="Red" />
+                                </ColorAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootTextBlock"
+                                            Storyboard.TargetProperty="Foreground"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="White" />
+                                </ObjectAnimationUsingKeyFrames>
+
+                                <ColorAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordEllipse"
+                                            Storyboard.TargetProperty="(Ellipse.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineColorKeyFrame KeyTime="00:00:00" Value="Green" />
+                                </ColorAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordTextBlock"
+                                            Storyboard.TargetProperty="Foreground"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="White" />
+                                </ObjectAnimationUsingKeyFrames>
+
+                                <ColorAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleEllipse"
+                                            Storyboard.TargetProperty="(Ellipse.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)"
+                                            Duration="00:00:00.0010000">
+                                    <SplineColorKeyFrame KeyTime="00:00:00" Value="Blue" />
+                                </ColorAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleTextBlock"
+                                            Storyboard.TargetProperty="Foreground"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="White" />
+                                </ObjectAnimationUsingKeyFrames>
+
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="ChordStates">
+                        <VisualState x:Name="NotChordMember">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ChordMember">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ChordContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="RootNoteStates">
+                        <VisualState x:Name="NotRootNote">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="RootNote">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="RootEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                    <VisualStateGroup x:Name="ScaleStates">
+                        <VisualState x:Name="NotScaleMember">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ScaleMember">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleEllipse"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="ScaleContentPresenter"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)"
+                                            Duration="00:00:00.0010000">
+                                    <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>-->
+            </Border.Child>
+        </Border>
+    </UserControl.Content>
+
+
+</UserControl>

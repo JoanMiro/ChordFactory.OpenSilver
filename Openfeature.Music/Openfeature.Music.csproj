@@ -1,8 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="controls\Octave.xaml" />
+    <None Remove="controls\PianoKey.xaml" />
+    <None Remove="controls\PianoKeyboard.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="controls\Octave.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\PianoKey.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\PianoKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">

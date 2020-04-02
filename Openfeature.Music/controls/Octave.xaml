@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="Openfeature.Music.controls.Octave"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Openfeature.Music.controls">
+    <UserControl.Content>
+        <Grid x:Name="RootElement">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.Children>
+                <local:PianoKey
+                            x:Name="CKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="CSharpKey"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Background="Black"
+                            Canvas.ZIndex="10" />
+                <local:PianoKey
+                            x:Name="DKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="3"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="EFlatKey"
+                            Grid.Column="4"
+                            Grid.ColumnSpan="2"
+                            Background="Black"
+                            Canvas.ZIndex="10" />
+                <local:PianoKey
+                            x:Name="EKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="5"
+                            Grid.ColumnSpan="2"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="FKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="7"
+                            Grid.ColumnSpan="2"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="FSharpKey"
+                            Grid.Column="8"
+                            Grid.ColumnSpan="2"
+                            Background="Black"
+                            Canvas.ZIndex="10" />
+                <local:PianoKey
+                            x:Name="GKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="9"
+                            Grid.ColumnSpan="3"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="GSharpKey"
+                            Grid.Column="11"
+                            Grid.ColumnSpan="2"
+                            Background="Black"
+                            Canvas.ZIndex="10" />
+                <local:PianoKey
+                            x:Name="AKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="12"
+                            Grid.ColumnSpan="3"
+                            Background="Ivory" />
+                <local:PianoKey
+                            x:Name="BFlatKey"
+                            Grid.Column="14"
+                            Grid.ColumnSpan="2"
+                            Background="Black"
+                            Canvas.ZIndex="10" />
+                <local:PianoKey
+                            x:Name="BKey"
+                            Grid.RowSpan="2"
+                            Grid.Column="15"
+                            Grid.ColumnSpan="2"
+                            Background="Ivory" />
+            </Grid.Children>
+        </Grid>
+    </UserControl.Content>
+</UserControl>
