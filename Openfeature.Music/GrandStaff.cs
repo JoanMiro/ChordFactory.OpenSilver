@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GrandStaff.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   GrandStaff control.
@@ -22,8 +22,6 @@ namespace Openfeature.Music
     /// </summary>
     public class GrandStaff : ContentControl
     {
-        #region Dependency Properties
-
         /// <summary>
         /// Bar DependencyProperty.
         /// </summary>
@@ -51,10 +49,6 @@ namespace Openfeature.Music
             = DependencyProperty.Register("VisibleStave", typeof(VisibleStave), typeof(GrandStaff),
                                           new PropertyMetadata(VisibleStave.Both, VisibleStaveChangedCallback));
 
-        #endregion
-
-        #region Private Fields
-
         /// <summary>
         /// The bass cleft TextBlock
         /// </summary>
@@ -75,10 +69,6 @@ namespace Openfeature.Music
         /// </summary>
         private Grid trebleNotePositionGrid;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GrandStaff"/> class.
         /// </summary>
@@ -86,10 +76,6 @@ namespace Openfeature.Music
         {
             this.DefaultStyleKey = typeof(GrandStaff);
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the bars.
@@ -127,10 +113,6 @@ namespace Openfeature.Music
         {
             get { return (VisibleStave)this.GetValue(VisibleStaveProperty); }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
@@ -233,10 +215,6 @@ namespace Openfeature.Music
             // }
         }
 
-        #endregion
-
-        #region Public Static Methods
-
         /// <summary>
         /// Bars changed callback.
         /// </summary>
@@ -276,10 +254,6 @@ namespace Openfeature.Music
                                                         DependencyPropertyChangedEventArgs args)
         {
         }
-
-        #endregion
-
-        #region Private Static Methods
 
         /// <summary>
         /// Gets the music symbol.
@@ -361,10 +335,6 @@ namespace Openfeature.Music
             // staveStringBuilder.Append(GetMusicSymbol(StavePart.EmptyBarSection));
             return staveStringBuilder.ToString();
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Adds the note symbols.
@@ -473,7 +443,5 @@ namespace Openfeature.Music
                                         ? Visibility.Visible
                                         : Visibility.Collapsed;
         }
-
-        #endregion
     }
 }

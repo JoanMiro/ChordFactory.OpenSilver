@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace ChordFactory.OpenSilver
+﻿namespace ChordFactory.OpenSilver
 {
+    using System.Windows.Controls;
+    using Openfeature.Music;
+
     public partial class MainPage : Page
     {
+        private readonly MusicData musicData = new MusicData();
+
         public MainPage()
         {
             this.InitializeComponent();
-
-            // Enter construction logic here...
+            this.DataContext = this.musicData;
         }
     }
 }

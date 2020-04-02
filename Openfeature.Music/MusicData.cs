@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MusicData.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Openfeature Music Data from XML.
@@ -21,8 +21,6 @@ namespace Openfeature.Music
     /// </summary>
     public class MusicData
     {
-        #region Private Fields
-
         /// <summary>
         /// List of chords.
         /// </summary>
@@ -43,10 +41,6 @@ namespace Openfeature.Music
         /// </summary>
         private readonly List<Scale> scales;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MusicData"/> class.
         /// </summary>
@@ -59,10 +53,6 @@ namespace Openfeature.Music
 
             this.LoadData();
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets the chords.
@@ -99,10 +89,6 @@ namespace Openfeature.Music
         {
             get { return this.scales; }
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Loads the chords.
@@ -246,7 +232,5 @@ namespace Openfeature.Music
                 this.Scales.Add(newScale);
             }
         }
-
-        #endregion
     }
 }

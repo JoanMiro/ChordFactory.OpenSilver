@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Stave.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Defines the Stave type.
@@ -21,18 +21,12 @@ namespace Openfeature.Music
     /// </summary>
     public class Stave : Control
     {
-        #region Dependency Properties
-
         /// <summary>
         /// Notes DependencyProperty.
         /// </summary>
         public static readonly DependencyProperty NotesProperty
             = DependencyProperty.Register("Notes", typeof(List<Note>), typeof(Stave),
                                           new PropertyMetadata(null, NotesChangedCallback));
-
-        #endregion
-
-        #region Private Fields
 
         /// <summary>
         /// Accidental symbols.
@@ -49,10 +43,6 @@ namespace Openfeature.Music
         /// </summary>
         private TextBlock clefSymbol;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Stave"/> class.
         /// </summary>
@@ -60,10 +50,6 @@ namespace Openfeature.Music
         {
             this.DefaultStyleKey = typeof(Stave);
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the Notes collection.
@@ -75,10 +61,6 @@ namespace Openfeature.Music
 
             set { this.SetValue(NotesProperty, value); }
         }
-
-        #endregion
-
-        #region Public Static Methods
 
         /// <summary>
         /// Notes changed callback.
@@ -95,10 +77,6 @@ namespace Openfeature.Music
                 theStave.ShowNotes();
             }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
@@ -125,8 +103,10 @@ namespace Openfeature.Music
             this.accidentalSymbols.Add((TextBlock)this.GetTemplateChild("Accidental8"));
             var musiSyncFontStream = this.GetType().Assembly.GetManifestResourceStream("Openfeature.Music.themes.MusiSync.ttf");
 
-            this.clefSymbol.FontSource = new FontSource(musiSyncFontStream);
-            this.clefSymbol.FontFamily = new FontFamily("MusiSync");
+
+            // TODO: GMM, 01-Apr-2020, load font code needed for this platform
+            //this.clefSymbol.FontSource = new FontSource(musiSyncFontStream);
+            //this.clefSymbol.FontFamily = new FontFamily("MusiSync");
             this.clefSymbol.FontSize = 96d;
             this.clefSymbol.Margin = new Thickness(5, 0, 0, 0);
 
@@ -137,10 +117,6 @@ namespace Openfeature.Music
             //    textBlock.FontSize = 40d;
             // }
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Shows the notes.
@@ -153,7 +129,5 @@ namespace Openfeature.Music
                 this.noteSymbols[noteIndex].SetValue(Grid.RowProperty, 0);
             }
         }
-
-        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PianoKeyboard.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   PianoKeyboard control.
@@ -18,18 +18,12 @@ namespace Openfeature.Music
     /// </summary>
     public class PianoKeyboard : Control
     {
-        #region Dependency Properties
-
         /// <summary>
         /// Octaves DependencyProperty.
         /// </summary>
         public static readonly DependencyProperty OctavesProperty
             = DependencyProperty.Register("Octaves", typeof(int), typeof(PianoKeyboard),
                                           new PropertyMetadata(new PropertyChangedCallback(OctavesChangedCallback)));
-
-        #endregion
-
-        #region Private Fields
 
         /// <summary>
         /// PianoKeys List.
@@ -46,10 +40,6 @@ namespace Openfeature.Music
         /// </summary>
         private StackPanel keyboardStackPanel;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PianoKeyboard"/> class.
         /// </summary>
@@ -58,10 +48,6 @@ namespace Openfeature.Music
             this.DefaultStyleKey = typeof(PianoKeyboard);
             this.keys = new List<PianoKey>();
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets the music data.
@@ -99,10 +85,6 @@ namespace Openfeature.Music
 
             set { this.SetValue(OctavesProperty, value); }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Octaveses the changed callback.
@@ -179,10 +161,6 @@ namespace Openfeature.Music
             }
         }
 
-        #endregion
-
-        #region Private Methods
-
         /// <summary>
         /// Populates the keys.
         /// </summary>
@@ -212,7 +190,5 @@ namespace Openfeature.Music
                 this.keyboardStackPanel.Children.Add(newOctave);
             }
         }
-
-        #endregion
     }
 }

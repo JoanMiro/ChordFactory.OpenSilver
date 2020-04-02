@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Chord.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Class representing a piano chord.
@@ -16,12 +16,6 @@ namespace Openfeature.Music
     /// </summary>
     public class Chord
     {
-        #region Private Fields
-
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Chord"/> class.
         /// </summary>
@@ -29,10 +23,6 @@ namespace Openfeature.Music
         {
             this.Notes = new List<int>();
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the description.
@@ -45,7 +35,5 @@ namespace Openfeature.Music
         /// </summary>
         /// <value>The notes.</value>
         public List<int> Notes { get; set; }
-
-        #endregion
     }
 }

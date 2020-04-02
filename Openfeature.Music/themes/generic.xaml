@@ -194,8 +194,7 @@
                     <Grid
                         x:Name="StaveGrid"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        ShowGridLines="False">
+                        VerticalAlignment="Top">
                         <Grid.Resources>
                             <Style x:Key="NoteStackPanelStyle" TargetType="StackPanel">
                                 <Setter Property="Grid.RowSpan" Value="2" />
@@ -474,13 +473,15 @@
                                 <RowDefinition Height="26" />
                                 <RowDefinition Height="26" />
                             </Grid.RowDefinitions>
+                            <!--
+                                RadiusX="3"
+                                RadiusY="3"
+                            -->
                             <Rectangle
                                 x:Name="BackgroundRectangle"
                                 Grid.RowSpan="4"
                                 Margin="1,0,1,1"
-                                Fill="{TemplateBinding Background}"
-                                RadiusX="3"
-                                RadiusY="3">
+                                Fill="{TemplateBinding Background}">
                                 <Rectangle.OpacityMask>
                                     <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
                                         <GradientStop Offset="0.915" Color="#FFFFFFFF" />

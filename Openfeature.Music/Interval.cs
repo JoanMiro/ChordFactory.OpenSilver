@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Interval.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Class representing an interval.
@@ -14,8 +14,6 @@ namespace Openfeature.Music
     /// </summary>
     public class Interval
     {
-        #region Public Properties
-
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -27,7 +25,5 @@ namespace Openfeature.Music
         /// </summary>
         /// <value>The notes.</value>
         public string Abbreviation { get; set; }
-
-        #endregion
     }
 }

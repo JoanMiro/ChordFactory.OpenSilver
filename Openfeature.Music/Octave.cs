@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Octave.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Control representing an octave of piano keys.
@@ -18,16 +18,10 @@ namespace Openfeature.Music
     /// </summary>
     public class Octave : Control
     {
-        #region Private Fields
-
         /// <summary>
         /// List of piano keys.
         /// </summary>
         private readonly List<PianoKey> keys;
-
-        #endregion
-
-        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Octave"/> class.
@@ -39,10 +33,6 @@ namespace Openfeature.Music
             Loaded += OctaveLoaded;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         /// Gets the keys list.
         /// </summary>
@@ -52,10 +42,6 @@ namespace Openfeature.Music
             get { return this.keys; }
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
         /// </summary>
@@ -64,10 +50,6 @@ namespace Openfeature.Music
             base.OnApplyTemplate();
             this.PopulateKeys();
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Handles the Loaded event of the Octave control.
@@ -96,7 +78,5 @@ namespace Openfeature.Music
                 this.keys.Add(key);
             }
         }
-
-        #endregion
     }
 }

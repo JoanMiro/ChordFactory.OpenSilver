@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PianoKey.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Defines the PianoKey type.
@@ -17,8 +17,6 @@ namespace Openfeature.Music
     /// </summary>
     public class PianoKey : Button
     {
-        #region Dependency Properties
-
         /// <summary>
         /// ChordNote DependencyProperty.
         /// </summary>
@@ -54,10 +52,6 @@ namespace Openfeature.Music
             = DependencyProperty.Register("ScaleNote", typeof(bool), typeof(PianoKey),
                                           new PropertyMetadata(false, ScaleNoteChangedCallback));
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PianoKey"/> class.
         /// </summary>
@@ -65,10 +59,6 @@ namespace Openfeature.Music
         {
             this.DefaultStyleKey = typeof(PianoKey);
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets a value indicating whether key is a chord note.
@@ -124,10 +114,6 @@ namespace Openfeature.Music
 
             set { this.SetValue(ScaleNoteProperty, value); }
         }
-
-        #endregion
-
-        #region private Static Methods
 
         /// <summary>
         /// ChordNote changed callback.
@@ -195,7 +181,5 @@ namespace Openfeature.Music
 
             VisualStateManager.GoToState(theKey, newValue ? "ScaleMember" : "NotScaleMember", true);
         }
-
-        #endregion
     }
 }

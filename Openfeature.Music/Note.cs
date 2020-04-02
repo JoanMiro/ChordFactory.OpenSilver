@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Note.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Structure representing a musical note.
@@ -18,16 +18,10 @@ namespace Openfeature.Music
     /// </summary>
     public class Note : DependencyObject
     {
-        #region Private Fields
-
         /// <summary>
         /// The raw note name i.e. just the note letter.
         /// </summary>
         private NoteName noteName;
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the accidental.
@@ -73,10 +67,6 @@ namespace Openfeature.Music
                 this.noteName = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Duration changed callback.
@@ -125,11 +115,5 @@ namespace Openfeature.Music
 
             return parsedNote.ToString();
         }
-
-        #endregion
-
-        #region Private Methods
-
-        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Bar.cs" company="Openfeature Limited">
-//   Copyright 2010 Openfeature Limited
+//   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
 //   Control representing a bar of music
@@ -16,8 +16,6 @@ namespace Openfeature.Music
     /// </summary>
     public class Bar : Control
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Bar"/> class.
         /// </summary>
@@ -25,7 +23,5 @@ namespace Openfeature.Music
         {
             this.DefaultStyleKey = typeof(Bar);
         }
-
-        #endregion
     }
 }
