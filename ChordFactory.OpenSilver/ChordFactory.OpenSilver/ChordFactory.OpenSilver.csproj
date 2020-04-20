@@ -22,7 +22,35 @@
     <DefineConstants>OPENSILVER</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Accidental.cs" />
+    <Compile Remove="AccidentalASCIICode.cs" />
+    <Compile Remove="Bar.cs" />
+    <Compile Remove="Clef.cs" />
+    <Compile Remove="controls\BlackPianoKey.xaml.cs" />
+    <Compile Remove="controls\GrandStaff.xaml.cs" />
+    <Compile Remove="controls\Octave.xaml.cs" />
+    <Compile Remove="controls\PianoKey.cs" />
+    <Compile Remove="controls\PianoKey.xaml.cs" />
+    <Compile Remove="controls\PianoKeyboard.cs" />
+    <Compile Remove="controls\PianoKeyboard.xaml.cs" />
+    <Compile Remove="controls\PianoOctave.xaml.cs" />
+    <Compile Remove="controls\TestControl.xaml.cs" />
+    <Compile Remove="controls\WhitePianoKey.xaml.cs" />
+    <Compile Remove="Duration.cs" />
+    <Compile Remove="FullScale.cs" />
+    <Compile Remove="GrandStaff.cs" />
+    <Compile Remove="Interval.cs" />
+    <Compile Remove="KeySignature.cs" />
     <Compile Remove="MainPage.xaml - Copy.cs" />
+    <Compile Remove="MusicalNote.cs" />
+    <Compile Remove="Note.cs" />
+    <Compile Remove="NoteASCIICode.cs" />
+    <Compile Remove="NoteName.cs" />
+    <Compile Remove="Octave.cs" />
+    <Compile Remove="Stave.cs" />
+    <Compile Remove="StavePart.cs" />
+    <Compile Remove="TimeSignature.cs" />
+    <Compile Remove="VisibleStave.cs" />
   </ItemGroup>
   
   <ItemGroup>
@@ -36,6 +64,8 @@
     <None Remove="controls\TestControl.xaml" />
     <None Remove="controls\WhitePianoKey.xaml" />
     <None Remove="EmptyOpenSilverMigrationApplication.csproj.vspscc" />
+    <None Remove="images\Bass_clef.svg" />
+    <None Remove="images\Treble_clef.svg" />
     <None Remove="MainPage - Copy.xaml" />
     <None Remove="MyTemplate_rename_me_after_export.vstemplate" />
   </ItemGroup>
@@ -45,31 +75,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ChordFactorySample.xml" />
-    <Content Include="controls\GrandStaff.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\Octave.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\PianoKey.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\PianoKeyboard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\PianoOctave.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\TestControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\BlackPianoKey.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="controls\WhitePianoKey.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
     <Content Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,9 +90,6 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Update="controls\BlackPianoKey.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -97,6 +99,11 @@
     <None Update="ChordFactorySchema.xsd">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="controls\" />
+    <Folder Include="images\" />
   </ItemGroup>
   
 </Project>

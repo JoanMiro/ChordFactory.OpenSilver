@@ -4,126 +4,49 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ChordFactory.OpenSilver"
-    xmlns:ctl="clr-namespace:ChordFactory.OpenSilver.controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="DarkSlateGray"
     mc:Ignorable="d">
     <Page.Resources>
         <Style x:Key="TitleLabel" TargetType="TextBlock">
             <Style.Setters>
                 <Setter Property="FontSize" Value="32" />
+                <Setter Property="Foreground" Value="PaleGoldenRod" />
             </Style.Setters>
         </Style>
-        <Style x:Key="InfoStyle" TargetType="TextBlock">
+        <Style x:Key="HeaderLabel" TargetType="TextBlock">
             <Style.Setters>
-                <Setter Property="FontSize" Value="32" />
-            </Style.Setters>
-        </Style>
-        <Style x:Key="ConfigCombo" TargetType="ComboBox">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="32" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="Orange" />
             </Style.Setters>
         </Style>
     </Page.Resources>
     <Page.Content>
         <Grid
             x:Name="LayoutRoot"
-            Margin="10"
+            Margin="30"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
             <Grid.Children>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
                     <StackPanel.Children>
-                        <!--  IsDirectionReversed="True"  -->
-                        <Slider
-                            x:Name="ZoomSlider"
-                            Height="200"
-                            Margin="10,5,5,5"
-                            LargeChange="0.1"
-                            Maximum="2"
-                            Minimum="0.5"
-                            Orientation="Horizontal"
-                            SmallChange="0.1"
-                            Value="1" />
-                        <StackPanel x:Name="MainContent">
-                            <StackPanel.RenderTransform>
-                                <ScaleTransform x:Name="MainContent_ScaleTransform" />
-                            </StackPanel.RenderTransform>
-                            <StackPanel.Children>
-                                <TextBlock
-                                    Margin="20,10,0,10"
-                                    FontFamily="Verdana"
-                                    FontSize="28"
-                                    FontWeight="Bold"
-                                    Foreground="DarkSlateBlue"
-                                    Text="Openfeature Silverlight Chord Factory" />
-                                <ctl:GrandStaff
-                                    x:Name="grandStaff"
-                                    Margin="20,0,0,20"
-                                    Background="Orange"
-                                    Bars="4" />
-                                <!--  VisibleStave="Treble"  -->
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Children>
-                                        <StackPanel Margin="20,0,0,0">
-                                            <StackPanel.Children>
-                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                                    <StackPanel.Children>
-                                                        <TextBlock Text="Chord: " />
-                                                        <!--{Binding ElementName=KilometersTextBox, Path=Text, Mode=TwoWay, Converter={StaticResource KilometersToMilesConverter}}-->
-                                                        <ComboBox
-                                                            x:Name="ChordsComboBox"
-                                                            ItemsSource="{Binding Path=Chords}"
-                                                            DisplayMemberPath="Description"
-                                                            />
-                                                    </StackPanel.Children>
-                                                </StackPanel>
-                                                <ctl:PianoKeyboard
-                                                    x:Name="pianoKeyboardChord"
-                                                    Width="400"
-                                                    Height="200" 
-                                                    Background="Yellow"
-                                                    HorizontalAlignment="Left"
-                                                    Inversion="{Binding Path=Inversion}"
-                                                    RootNote="{Binding Path=RootNote, Mode=TwoWay}"
-                                                    SelectedChord="{Binding Path=SelectedChord}"
-                                                    SelectedScale="{Binding Path=SelectedScale}"
-                                                    Octaves="2" />
-                                                <TextBlock
-                                                    x:Name="chordName"
-                                                    HorizontalAlignment="Center"
-                                                    
-                                                    Text="CHORD" />
-                                            </StackPanel.Children>
-                                        </StackPanel>
-                                        <StackPanel Margin="20,0,0,0">
-                                            <StackPanel.Children>
-                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                                    <StackPanel.Children>
-                                                        <TextBlock Text="Scale: " />
-                                                        <ComboBox
-                                                            x:Name="ScalesComboBox"
-                                                            ItemsSource="{Binding Path=Scales}"
-                                                            DisplayMemberPath="Description"
-                                                            />
-                                                    </StackPanel.Children>
-                                                </StackPanel>
-                                                <ctl:PianoKeyboard
-                                                    x:Name="pianoKeyboardScale"
-                                                    Background="Cyan"
-                                                    Width="400"
-                                                    Height="200"
-                                                    HorizontalAlignment="Left"
-                                                    Octaves="2" />
-                                                <TextBlock
-                                                    x:Name="scaleName"
-                                                    HorizontalAlignment="Center"
-                                                    Text="SCALE" />
-                                            </StackPanel.Children>
-                                        </StackPanel>
-                                    </StackPanel.Children>
-                                </StackPanel>
-                            </StackPanel.Children>
-                        </StackPanel>
+                        <TextBlock Style="{StaticResource TitleLabel}" Text="Openfeature ChordFactory" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderLabel}" Text="Chords" />
+                                <ComboBox Grid.Row="1" Grid.Column="0" SelectedIndex="0" HorizontalAlignment="Left" ItemsSource="{Binding Chords}" DisplayMemberPath="Description" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderLabel}" Text="Scales" />
+                                <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="0" HorizontalAlignment="Left" ItemsSource="{Binding Scales}" DisplayMemberPath="Description" />
+                            </Grid.Children>
+                        </Grid>
                     </StackPanel.Children>
                 </StackPanel>
             </Grid.Children>
