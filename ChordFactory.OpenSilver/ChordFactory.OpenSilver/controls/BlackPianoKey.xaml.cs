@@ -12,7 +12,11 @@ using System.Windows.Navigation;
 
 namespace ChordFactory.OpenSilver.controls
 {
-    public partial class PianoKey : Button
+    public partial class BlackPianoKey : UserControl
     {
+        public BlackPianoKey()
+        {
+            this.InitializeComponent();
+        }
     }
 }

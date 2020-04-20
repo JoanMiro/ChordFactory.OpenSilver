@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver
 {
     using System.Windows.Controls;
 

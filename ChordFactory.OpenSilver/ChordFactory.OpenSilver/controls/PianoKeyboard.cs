@@ -7,16 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver.controls
 {
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using models;
 
     /// <summary>
     /// PianoKeyboard control.
     /// </summary>
-    public class PianoKeyboard : Control
+    public partial class PianoKeyboard : UserControl
     {
         /// <summary>
         /// Octaves DependencyProperty.
@@ -31,17 +32,12 @@ namespace Openfeature.Music
         private readonly List<PianoKey> keys;
 
         /// <summary>
-        /// The chord, scale etc. data.
-        /// </summary>
-        private readonly MusicData musicData = new MusicData();
-
-        /// <summary>
         /// The container for the octaves.
         /// </summary>
         private StackPanel keyboardStackPanel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PianoKeyboard"/> class.
+        /// Initializes a new instance of the <see cref="ChordFactory.OpenSilver.controls.PianoKeyboard"/> class.
         /// </summary>
         public PianoKeyboard()
         {
@@ -53,10 +49,7 @@ namespace Openfeature.Music
         /// Gets the music data.
         /// </summary>
         /// <value>The music data.</value>
-        public MusicData MusicData
-        {
-            get { return this.musicData; }
-        }
+        public MusicData MusicData { get; } = new MusicData();
 
         /// <summary>
         /// Gets the keys list.
@@ -118,7 +111,7 @@ namespace Openfeature.Music
         {
             foreach (var pianoKey in this.Keys)
             {
-                pianoKey.Content = string.Empty;
+                pianoKey.Content = null;
                 pianoKey.ChordNote = false;
                 pianoKey.RootNote = false;
             }
@@ -126,7 +119,7 @@ namespace Openfeature.Music
             foreach (int noteIndex in chord.Notes)
             {
                 int noteValue = (rootNote + noteIndex) % this.Keys.Count;
-                this.Keys[noteValue].ChordSymbol = this.musicData.Intervals[noteIndex].Abbreviation;
+                this.Keys[noteValue].ChordSymbol = this.MusicData.Intervals[noteIndex].Abbreviation;
                 this.Keys[noteValue].ChordNote = true;
                 this.Keys[rootNote].RootNote = true;
             }
@@ -149,7 +142,7 @@ namespace Openfeature.Music
                 if (scale.Notes.Contains(adjustedNote))
                 {
                     this.Keys[keyIndex].ScaleNote = true;
-                    this.Keys[keyIndex].Content = this.musicData.Notes[keyIndex % 12].FullName;
+                    this.Keys[keyIndex].Content = this.MusicData.Notes[keyIndex % 12].FullName;
                 }
                 else
                 {
@@ -168,7 +161,7 @@ namespace Openfeature.Music
         {
             foreach (var uiElement in this.keyboardStackPanel.Children)
             {
-                var currentOctave = uiElement as Octave;
+                var currentOctave = uiElement as OpenSilver.Octave;
                 if (currentOctave != null)
                 {
                     foreach (var pianoKey in currentOctave.Keys)
@@ -186,7 +179,7 @@ namespace Openfeature.Music
         {
             for (var octaveCount = 0; octaveCount < this.Octaves; octaveCount++)
             {
-                var newOctave = new Octave { Width = this.Width / this.Octaves };
+                var newOctave = new OpenSilver.Octave { Width = this.Width / this.Octaves };
                 this.keyboardStackPanel.Children.Add(newOctave);
             }
         }

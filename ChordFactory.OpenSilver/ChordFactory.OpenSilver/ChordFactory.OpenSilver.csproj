@@ -26,17 +26,25 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="ChordFactory.xml" />
+    <None Remove="controls\BlackPianoKey.xaml" />
     <None Remove="controls\GrandStaff.xaml" />
     <None Remove="controls\Octave.xaml" />
     <None Remove="controls\PianoKey.xaml" />
     <None Remove="controls\PianoKeyboard.xaml" />
+    <None Remove="controls\PianOOctave.xaml" />
     <None Remove="controls\TestControl.xaml" />
+    <None Remove="controls\WhitePianoKey.xaml" />
     <None Remove="EmptyOpenSilverMigrationApplication.csproj.vspscc" />
     <None Remove="MainPage - Copy.xaml" />
     <None Remove="MyTemplate_rename_me_after_export.vstemplate" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="ChordFactory.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ChordFactorySample.xml" />
     <Content Include="controls\GrandStaff.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
@@ -49,7 +57,17 @@
     <Content Include="controls\PianoKeyboard.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <Content Include="controls\PianoOctave.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <Content Include="controls\TestControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\BlackPianoKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="controls\WhitePianoKey.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
     <Content Include="MainPage.xaml">
@@ -67,9 +85,18 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Update="controls\BlackPianoKey.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ChordFactorySchema.xsd">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
 </Project>

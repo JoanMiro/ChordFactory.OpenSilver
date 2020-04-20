@@ -7,14 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.IO;
     using System.Linq;
     using System.Xml;
     using System.Xml.Linq;
+    using models;
 
     /// <summary>
     /// Openfeature Music Data from XML.
@@ -102,9 +103,9 @@ namespace Openfeature.Music
             {
                 chordsReader.ReadToFollowing("Description");
                 var newChord = new Chord
-                                   {
-                                       Description = chordsReader.ReadElementContentAsString()
-                                   };
+                {
+                    Description = chordsReader.ReadElementContentAsString()
+                };
 
                 chordsReader.ReadToFollowing("NoteList");
                 newChord.Notes.AddRange((from eachNote in chordsReader.ReadElementContentAsString().Split(',')
@@ -118,10 +119,10 @@ namespace Openfeature.Music
         /// </summary>
         private void LoadData()
         {
-            Stream stream = this.GetType().Assembly.GetManifestResourceStream("Openfeature.Music.ChordFactory.xml");
+            var stream = this.GetType().Assembly.GetManifestResourceStream("ChordFactory.xml");
             if (stream != null)
             {
-                XmlReader reader = XmlReader.Create(stream);
+                var reader = XmlReader.Create(stream);
 
                 reader.ReadToFollowing("Chords");
                 this.LoadChords(reader.ReadSubtree());
@@ -135,6 +136,11 @@ namespace Openfeature.Music
                 reader.ReadToFollowing("Intervals");
                 this.LoadIntervals(reader.ReadSubtree());
             }
+            else
+            {
+                Console.WriteLine("Stream is null!");
+                Debug.WriteLine("Stream is null!");
+            }
         }
 
         /// <summary>
@@ -147,9 +153,9 @@ namespace Openfeature.Music
             {
                 intervalsReader.ReadToFollowing("Description");
                 var newInterval = new Interval
-                                      {
-                                          Description = intervalsReader.ReadElementContentAsString()
-                                      };
+                {
+                    Description = intervalsReader.ReadElementContentAsString()
+                };
 
                 intervalsReader.ReadToFollowing("Abbreviation");
                 newInterval.Abbreviation = intervalsReader.ReadElementContentAsString();
@@ -177,21 +183,21 @@ namespace Openfeature.Music
                 Debug.WriteLine(semitone.ToString());
 
                 var newNote = new Note
-                  {
-                      // ReSharper disable PossibleNullReferenceException
-                      Accidental = semitone.Element(ns + "Accidental").Value.AccidentalFromString(),
-                      FullName = (string)semitone.Element(ns + "FullName"),
-                      MidiValue = (int)semitone.Element(ns + "MidiValue"),
-                      NoteName = semitone.Element(ns + "NoteName").Value.NoteNameFromString(),
-                      Octave = (int)semitone.Element(ns + "Octave")
-                  };
+                {
+                    // ReSharper disable PossibleNullReferenceException
+                    Accidental = semitone.Element(ns + "Accidental").Value.AccidentalFromString(),
+                    FullName = (string)semitone.Element(ns + "FullName"),
+                    MidiValue = (int)semitone.Element(ns + "MidiValue"),
+                    NoteName = semitone.Element(ns + "NoteName").Value.NoteNameFromString(),
+                    Octave = (int)semitone.Element(ns + "Octave")
+                };
 
                 // ReSharper restore PossibleNullReferenceException
                 this.Notes.Add(newNote);
             }
 
             // Accidental, MidiValue, FullName, NoteName, Octave
-               
+
             // while (notesReader.ReadToFollowing("Semitone"))
             // {
             //     // var testNote = notesReader.ReadElementContentAs(typeof(Note), null);
@@ -222,9 +228,9 @@ namespace Openfeature.Music
             {
                 scalesReader.ReadToFollowing("Description");
                 var newScale = new Scale
-                                   {
-                                       Description = scalesReader.ReadElementContentAsString()
-                                   };
+                {
+                    Description = scalesReader.ReadElementContentAsString()
+                };
 
                 scalesReader.ReadToFollowing("NoteList");
                 newScale.Notes.AddRange((from eachNote in scalesReader.ReadElementContentAsString().Split(',')

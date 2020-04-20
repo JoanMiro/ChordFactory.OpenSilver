@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver.models
 {
     using System.Collections.Generic;
 

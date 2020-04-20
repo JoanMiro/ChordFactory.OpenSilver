@@ -1,29 +1,32 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Interval.cs" company="Openfeature Limited">
+// <copyright file="Enums.cs" company="Openfeature Limited">
 //   Copyright 2020 Openfeature Limited
 // </copyright>
 // <summary>
-//   Class representing an interval.
+//   Accidental markers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace ChordFactory.OpenSilver
 {
     /// <summary>
-    /// Class representing an interval.
+    /// Accidental markers.
     /// </summary>
-    public class Interval
+    public enum Accidental
     {
         /// <summary>
-        /// Gets or sets the description.
+        /// Flat accidental marker.
         /// </summary>
-        /// <value>The description.</value>
-        public string Description { get; set; }
+        Flat = 0,
 
         /// <summary>
-        /// Gets or sets the notes.
+        /// Natural/no accidental marker.
         /// </summary>
-        /// <value>The notes.</value>
-        public string Abbreviation { get; set; }
+        Natural,
+
+        /// <summary>
+        /// Sharp accidental marker.
+        /// </summary>
+        Sharp
     }
 }

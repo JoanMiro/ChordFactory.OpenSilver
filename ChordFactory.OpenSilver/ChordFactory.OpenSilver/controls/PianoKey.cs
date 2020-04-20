@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver.controls
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -15,8 +15,29 @@ namespace Openfeature.Music
     /// <summary>
     /// PianoKey class implementation
     /// </summary>
-    public class PianoKey : Button
+    public partial class PianoKey : Button
     {
+        /// <summary>
+        /// The is scale key property.
+        /// </summary>
+        public static readonly DependencyProperty IsScaleKeyProperty =
+            DependencyProperty.Register("IsScaleKey", typeof(bool), typeof(PianoKey),
+                new PropertyMetadata(false, OnIsScaleKeyChanged));
+
+        /// <summary>
+        /// The is chord key property.
+        /// </summary>
+        public static readonly DependencyProperty IsChordKeyProperty =
+            DependencyProperty.Register("IsChordKey", typeof(bool), typeof(PianoKey),
+                new PropertyMetadata(false, OnIsChordKeyChanged));
+
+        /// <summary>
+        /// The is chord key property.
+        /// </summary>
+        public static readonly DependencyProperty IsRootKeyProperty =
+            DependencyProperty.Register("IsRootKey", typeof(bool), typeof(PianoKey),
+                new PropertyMetadata(false, OnIsRootKeyChanged));
+        
         /// <summary>
         /// ChordNote DependencyProperty.
         /// </summary>
@@ -57,6 +78,7 @@ namespace Openfeature.Music
         /// </summary>
         public PianoKey()
         {
+            this.InitializeComponent();
             this.DefaultStyleKey = typeof(PianoKey);
         }
 
@@ -69,6 +91,35 @@ namespace Openfeature.Music
             get { return (bool)this.GetValue(ChordNoteProperty); }
 
             set { this.SetValue(ChordNoteProperty, value); }
+        }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether IsChordKey.
+        /// </summary>
+        public bool IsChordKey
+        {
+            get { return (bool)this.GetValue(IsChordKeyProperty); }
+            set { this.SetValue(IsChordKeyProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsScaleKey.
+        /// </summary>
+        public bool IsScaleKey
+        {
+            get { return (bool)this.GetValue(IsScaleKeyProperty); }
+            set { this.SetValue(IsScaleKeyProperty, value); }
+        }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether key is a root note.
+        /// </summary>
+        /// <value>Will be <c>true</c> if [root note]; otherwise, <c>false</c>.</value>
+        public bool IsRootKey
+        {
+            get { return (bool)this.GetValue(IsRootKeyProperty); }
+
+            set { this.SetValue(IsRootKeyProperty, value); }
         }
 
         /// <summary>
@@ -180,6 +231,44 @@ namespace Openfeature.Music
             theKey.ScaleNote = newValue;
 
             VisualStateManager.GoToState(theKey, newValue ? "ScaleMember" : "NotScaleMember", true);
+        }
+        /// <summary>
+        /// Called when [is chord key changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnIsChordKeyChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            var source = (PianoKey)sender;
+
+            var newValue = (bool)args.NewValue;
+            VisualStateManager.GoToState(source, newValue ? "IsChordKey" : "IsNotChordKey", true);
+        }
+
+        /// <summary>
+        /// Called when [is root key changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnIsRootKeyChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            var source = (PianoKey)sender;
+
+            var newValue = (bool)args.NewValue;
+            VisualStateManager.GoToState(source, newValue ? "IsRootKey" : "IsNotRootKey", true);
+        }
+
+        /// <summary>
+        /// Called when [is scale key changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void OnIsScaleKeyChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            var source = (PianoKey)sender;
+
+            var newValue = (bool)args.NewValue;
+            VisualStateManager.GoToState(source, newValue ? "IsScaleKey" : "IsNotScaleKey", true);
         }
     }
 }

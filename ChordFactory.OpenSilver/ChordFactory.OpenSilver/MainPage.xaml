@@ -41,7 +41,7 @@
                             LargeChange="0.1"
                             Maximum="2"
                             Minimum="0.5"
-                            Orientation="Vertical"
+                            Orientation="Horizontal"
                             SmallChange="0.1"
                             Value="1" />
                         <StackPanel x:Name="MainContent">
@@ -59,7 +59,7 @@
                                 <ctl:GrandStaff
                                     x:Name="grandStaff"
                                     Margin="20,0,0,20"
-                                    Background="Transparent"
+                                    Background="Orange"
                                     Bars="4" />
                                 <!--  VisibleStave="Treble"  -->
                                 <StackPanel Orientation="Horizontal">
@@ -69,8 +69,10 @@
                                                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                                                     <StackPanel.Children>
                                                         <TextBlock Text="Chord: " />
+                                                        <!--{Binding ElementName=KilometersTextBox, Path=Text, Mode=TwoWay, Converter={StaticResource KilometersToMilesConverter}}-->
                                                         <ComboBox
                                                             x:Name="ChordsComboBox"
+                                                            ItemsSource="{Binding Path=Chords}"
                                                             DisplayMemberPath="Description"
                                                             />
                                                     </StackPanel.Children>
@@ -78,8 +80,13 @@
                                                 <ctl:PianoKeyboard
                                                     x:Name="pianoKeyboardChord"
                                                     Width="400"
-                                                    Height="200"
+                                                    Height="200" 
+                                                    Background="Yellow"
                                                     HorizontalAlignment="Left"
+                                                    Inversion="{Binding Path=Inversion}"
+                                                    RootNote="{Binding Path=RootNote, Mode=TwoWay}"
+                                                    SelectedChord="{Binding Path=SelectedChord}"
+                                                    SelectedScale="{Binding Path=SelectedScale}"
                                                     Octaves="2" />
                                                 <TextBlock
                                                     x:Name="chordName"
@@ -95,12 +102,14 @@
                                                         <TextBlock Text="Scale: " />
                                                         <ComboBox
                                                             x:Name="ScalesComboBox"
+                                                            ItemsSource="{Binding Path=Scales}"
                                                             DisplayMemberPath="Description"
                                                             />
                                                     </StackPanel.Children>
                                                 </StackPanel>
                                                 <ctl:PianoKeyboard
                                                     x:Name="pianoKeyboardScale"
+                                                    Background="Cyan"
                                                     Width="400"
                                                     Height="200"
                                                     HorizontalAlignment="Left"

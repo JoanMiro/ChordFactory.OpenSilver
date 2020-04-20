@@ -7,11 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver
 {
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using controls;
 
     /// <summary>
     /// Control representing an octave of piano keys.
@@ -30,7 +31,7 @@ namespace Openfeature.Music
         {
             this.DefaultStyleKey = typeof(Octave);
             this.keys = new List<PianoKey>();
-            Loaded += OctaveLoaded;
+            this.Loaded += OctaveLoaded;
         }
 
         /// <summary>

@@ -7,15 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Openfeature.Music
+namespace ChordFactory.OpenSilver
 {
     using System;
-    using System.IO;
     using System.Text;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Documents;
-    using System.Windows.Media;
+    using models;
 
     /// <summary>
     /// GrandStaff control.
