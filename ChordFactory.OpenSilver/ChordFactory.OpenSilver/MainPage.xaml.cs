@@ -1,5 +1,6 @@
 ﻿namespace ChordFactory.OpenSilver
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -10,8 +11,12 @@
     {
         private ComboBox chordsCombo;
         private ComboBox scalesCombo;
+        private ComboBox inversionCombo;
         private Grid chordKeyboardGrid;
         private Grid scaleKeyboardGrid;
+        private TextBlock selectedChordLabel;
+        private TextBlock selectedScaleLabel;
+
         private readonly List<Border> chordKeys = new List<Border>();
         private readonly List<Border> scaleKeys = new List<Border>();
         private readonly Color chordWhiteKeySelected = Colors.Orange;
@@ -20,6 +25,7 @@
         private readonly Color scaleBlackKeySelected = Colors.DarkSlateBlue;
         private int chordRootNote;
         private int scaleRootNote;
+        private readonly List<string> noteNames = new List<string> { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B" };
 
         public MainPage()
         {
@@ -32,11 +38,20 @@
             this.DataContext = new MusicData();
             this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
             this.scalesCombo = this.FindName("ScalesComboBox") as ComboBox;
+            this.selectedChordLabel = this.FindName("SelectedChordLabel") as TextBlock;
+            this.selectedScaleLabel = this.FindName("SelectedScaleLabel") as TextBlock;
+            this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
+
+            if (this.inversionCombo != null)
+            {
+                this.inversionCombo.SelectionChanged += this.InversionCombo_SelectionChanged;
+            }
 
             if (this.chordsCombo != null)
             {
                 this.chordsCombo.SelectionChanged += this.ChordsCombo_SelectionChanged;
             }
+
             if (this.scalesCombo != null)
             {
                 this.scalesCombo.SelectionChanged += this.ScalesCombo_SelectionChanged;
@@ -49,6 +64,12 @@
 
             this.chordsCombo.SelectedIndex = 0;
             this.scalesCombo.SelectedIndex = 0;
+            this.inversionCombo.SelectedIndex = 0;
+        }
+
+        private void InversionCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.ShowChord(this.chordsCombo.SelectedItem as Chord);
         }
 
         private void PopulateKeys()
@@ -126,21 +147,42 @@
         {
             this.chordKeys.ForEach(k => k.Background = new SolidColorBrush((string)k.Tag == "Ivory" ? Colors.Ivory : Colors.Black));
 
-            foreach (var note in chord.Notes)
+            var adjustedNotes = new int[chord.Notes.Count];
+            chord.Notes.CopyTo(adjustedNotes);
+
+            for (var inversionNote = 0;
+                 inversionNote < Math.Min(this.inversionCombo.SelectedIndex, chord.Notes.Count);
+                 inversionNote++)
             {
-                this.chordKeys[note + this.chordRootNote].Background =
+                adjustedNotes[inversionNote] += 12;
+            }
+
+            for (var index = 0; index < adjustedNotes.Length; index++)
+            {
+               adjustedNotes[index] = adjustedNotes[index] % 24;
+            }
+
+            foreach (var note in adjustedNotes)
+            {
+                this.chordKeys[(note + this.chordRootNote) % 24].Background =
                     new SolidColorBrush((string)this.chordKeys[note].Tag == "Ivory" ? this.chordWhiteKeySelected : this.chordBlackKeySelected);
             }
+
+            this.selectedChordLabel.Text =
+                $"Current Chord: {this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord).Description} [{this.inversionCombo.SelectedItem}]";
         }
+
         private void ShowScale(Scale scale)
         {
             this.scaleKeys.ForEach(k => k.Background = new SolidColorBrush((string)k.Tag == "Ivory" ? Colors.Ivory : Colors.Black));
 
             foreach (var note in scale.Notes)
             {
-                this.scaleKeys[note + this.scaleRootNote].Background =
+                this.scaleKeys[(note + this.scaleRootNote) % 24].Background =
                     new SolidColorBrush((string)this.chordKeys[note].Tag == "Ivory" ? this.scaleWhiteKeySelected : this.scaleBlackKeySelected);
             }
+
+            this.selectedScaleLabel.Text = $"Current Scale: {this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale).Description}";
         }
     }
 }

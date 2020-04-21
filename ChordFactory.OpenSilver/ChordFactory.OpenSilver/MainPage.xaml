@@ -46,28 +46,62 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.Children>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Style="{StaticResource HeaderLabel}"
+                                    Text="Chords" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Style="{StaticResource HeaderLabel}"
+                                    Text="Inversion" />
+                            </Grid.Children>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <ComboBox
+                                    x:Name="ChordsComboBox"
+                                    Grid.Column="0"
+                                    Margin="0,10"
+                                    HorizontalAlignment="Left"
+                                    DisplayMemberPath="Description"
+                                    FontSize="12"
+                                    ItemsSource="{Binding Chords}"
+                                    SelectedIndex="0" />
+                                <ComboBox
+                                    x:Name="InversionCombo"
+                                    Grid.Column="1"
+                                    Margin="0,10"
+                                    HorizontalAlignment="Left"
+                                    FontSize="12"
+                                    ItemsSource="{Binding Inversions}"
+                                    SelectedIndex="0" />
+                            </Grid.Children>
+                        </Grid>
                         <TextBlock
-                            Grid.Row="0"
+                            x:Name="SelectedChordLabel"
+                            Grid.Row="3"
                             Grid.Column="0"
-                            Style="{StaticResource HeaderLabel}"
-                            Text="Chords" />
-                        <ComboBox
-                            x:Name="ChordsComboBox"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="0,10"
-                            HorizontalAlignment="Left"
-                            DisplayMemberPath="Description"
-                            ItemsSource="{Binding Chords}"
-                            SelectedIndex="0" />
+                            Style="{StaticResource HeaderLabel}" />
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="1"
@@ -80,280 +114,19 @@
                             Margin="0,10"
                             HorizontalAlignment="Left"
                             DisplayMemberPath="Description"
+                            FontSize="12"
                             ItemsSource="{Binding Scales}"
                             SelectedIndex="0" />
-                        <Grid
-                            x:Name="ChordKeyboardGrid"
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Margin="0,10,30,10"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="Ivory">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.Children>
-                                <Grid
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="3*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*" />
-                                        <RowDefinition Height="2*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.Children>
-                                        <Border
-                                            x:Name="CKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="0"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="CSharpKey"
-                                            Grid.Column="1"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="DKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="2"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="EFlatKey"
-                                            Grid.Column="4"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="EKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="5"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="FKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="7"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="FSharpKey"
-                                            Grid.Column="8"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="GKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="9"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="GSharpKey"
-                                            Grid.Column="11"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="AKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="12"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="BFlatKey"
-                                            Grid.Column="14"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="BKey"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="15"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                    </Grid.Children>
-                                </Grid>
-                                <Grid
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="3*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="3*" />
-                                        <RowDefinition Height="2*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.Children>
-                                        <Border
-                                            x:Name="CKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="0"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="CSharpKey1"
-                                            Grid.Column="1"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="DKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="2"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="EFlatKey1"
-                                            Grid.Column="4"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="EKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="5"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="FKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="7"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="FSharpKey1"
-                                            Grid.Column="8"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="GKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="9"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="GSharpKey1"
-                                            Grid.Column="11"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="AKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="12"
-                                            Grid.ColumnSpan="3"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                        <Border
-                                            x:Name="BFlatKey1"
-                                            Grid.Column="14"
-                                            Grid.ColumnSpan="2"
-                                            Background="Black"
-                                            Canvas.ZIndex="10"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Black" />
-                                        <Border
-                                            x:Name="BKey1"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="15"
-                                            Grid.ColumnSpan="2"
-                                            Background="Ivory"
-                                            Style="{StaticResource PianoKeyStyle}"
-                                            Tag="Ivory" />
-                                    </Grid.Children>
-                                </Grid>
-                            </Grid.Children>
-                        </Grid>
-                        <Grid
-                            x:Name="ScaleKeyboardGrid"
+                        <TextBlock
+                            x:Name="SelectedScaleLabel"
                             Grid.Row="3"
                             Grid.Column="1"
-                            Margin="0,10"
+                            Style="{StaticResource HeaderLabel}" />
+                        <Grid
+                            x:Name="ChordKeyboardGrid"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,10,30,10"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Background="Ivory">
@@ -480,6 +253,273 @@
                                             Tag="Black" />
                                         <Border
                                             x:Name="ChordBKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="15"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                    </Grid.Children>
+                                </Grid>
+                                <Grid
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="3*" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.Children>
+                                        <Border
+                                            x:Name="ChordCKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordCSharpKey1"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ChordDKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordEFlatKey1"
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ChordEKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="5"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordFKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="7"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordFSharpKey1"
+                                            Grid.Column="8"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ChordGKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="9"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordGSharpKey1"
+                                            Grid.Column="11"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ChordAKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="12"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ChordBFlatKey1"
+                                            Grid.Column="14"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ChordBKey1"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="15"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                    </Grid.Children>
+                                </Grid>
+                            </Grid.Children>
+                        </Grid>
+                        <Grid
+                            x:Name="ScaleKeyboardGrid"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="0,10"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Ivory">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <Grid
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="3*" />
+                                        <RowDefinition Height="2*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.Children>
+                                        <Border
+                                            x:Name="ScaleCKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleCSharpKey"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ScaleDKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleEFlatKey"
+                                            Grid.Column="4"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ScaleEKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="5"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleFKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="7"
+                                            Grid.ColumnSpan="2"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleFSharpKey"
+                                            Grid.Column="8"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ScaleGKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="9"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleGSharpKey"
+                                            Grid.Column="11"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ScaleAKey"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="12"
+                                            Grid.ColumnSpan="3"
+                                            Background="Ivory"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Ivory" />
+                                        <Border
+                                            x:Name="ScaleBFlatKey"
+                                            Grid.Column="14"
+                                            Grid.ColumnSpan="2"
+                                            Background="Black"
+                                            Canvas.ZIndex="10"
+                                            Style="{StaticResource PianoKeyStyle}"
+                                            Tag="Black" />
+                                        <Border
+                                            x:Name="ScaleBKey"
                                             Grid.RowSpan="2"
                                             Grid.Column="15"
                                             Grid.ColumnSpan="2"

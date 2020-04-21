@@ -91,6 +91,8 @@ namespace ChordFactory.OpenSilver
             get { return this.scales; }
         }
 
+        public string[] Inversions => Enum.GetNames(typeof(Inversion));
+
         /// <summary>
         /// Loads the chords.
         /// </summary>
