@@ -20,13 +20,13 @@
 
         private readonly List<Border> chordKeys = new List<Border>();
         private readonly List<Border> scaleKeys = new List<Border>();
-        private readonly Color chordWhiteKeySelected = Colors.Orange;
-        private readonly Color chordBlackKeySelected = Colors.DarkOrange;
-        private readonly Color scaleWhiteKeySelected = Colors.LimeGreen;
-        private readonly Color scaleBlackKeySelected = Colors.ForestGreen;
+        private readonly Color chordWhiteKeySelected = Colors.SkyBlue;
+        private readonly Color chordBlackKeySelected = Colors.CadetBlue;
+        private readonly Color scaleWhiteKeySelected = Colors.DarkSeaGreen;
+        private readonly Color scaleBlackKeySelected = Colors.SeaGreen;
 
-        private readonly Color chordKeyBorderSelected = Colors.DarkRed;
-        private readonly Color scaleKeyBorderSelected = Colors.DarkGreen;
+        private readonly Color chordKeyBorderSelected = Colors.DarkSlateBlue;
+        private readonly Color scaleKeyBorderSelected = Colors.DarkSlateGray;
 
         private int chordRootNote;
         private int scaleRootNote;
