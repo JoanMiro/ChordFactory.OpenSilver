@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
@@ -31,6 +33,15 @@
         private int chordRootNote;
         private int scaleRootNote;
         private readonly List<string> noteNames = new List<string> { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B" };
+
+        private const string WaveString = @"media\PIANO_MED_{0}.wav";
+
+        private readonly List<string> wavFiles = new List<string>
+        {
+            "C3", "DB3", "D3", "EB3", "E3", "F3", "GB3", "G3", "AB3", "A3", "BB3", "B3",
+            "C4", "DB4", "D4", "EB4", "E4", "F4", "GB4", "G4", "AB4", "A4", "BB4", "B4",
+            "C5", "DB5", "D5", "EB5", "E5", "F5", "GB5", "G5", "AB5", "A5", "BB5", "B5"
+        };
 
         public MainPage()
         {
@@ -128,6 +139,47 @@
             }
         }
 
+        public void PlayChord(Chord chord)
+        {
+            var mediaElements = new List<MediaElement>();
+            var noteLength = new TimeSpan(0, 0, 0, 0, 400);
+            var pauseLength = new TimeSpan(0, 0, 0, 1, 500);
+
+            var actualChordNotes = chord.Notes.Select(c => (c + (int)this.chordRootNote) % 24).ToList();
+            for (var inversionNote = 0;
+                inversionNote < Math.Min(this.inversionCombo.SelectedIndex, chord.Notes.Count);
+                inversionNote++)
+            {
+                actualChordNotes[inversionNote] += 12;
+            }
+
+            actualChordNotes.Sort();
+
+            actualChordNotes.ForEach(
+                n => mediaElements.Add(this.GetMediaElementFromResource(string.Format(WaveString, this.wavFiles[n % this.wavFiles.Count]))));
+
+            // Play chord
+            mediaElements.ForEach(e => e.Play());
+
+            var pauseEndTime = DateTime.Now + pauseLength;
+
+            {
+                // Wait
+                while (DateTime.Now < pauseEndTime)
+                {
+                }
+
+                // Play arpeggio
+                mediaElements.ForEach(e =>
+                {
+                    e.Play();
+                    var endTime = DateTime.Now + noteLength;
+                    while (DateTime.Now < endTime)
+                    {
+                    }
+                });
+            }
+        }
 
         private void ChordKey_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -199,6 +251,8 @@
             }
 
             this.selectedChordLabel.Text = $"{this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord).Description} [{this.inversionCombo.SelectedItem}]";
+
+            // this.PlayChord(chord);
         }
 
         private void ShowScale(Scale scale)
@@ -215,6 +269,20 @@
             }
 
             this.selectedScaleLabel.Text = $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale).Description}";
+        }
+
+        private MediaElement GetMediaElementFromResource(string resource)
+        {
+            try
+            {
+                var mediaElement = new MediaElement { Source = new Uri(resource, UriKind.Relative) };
+                return mediaElement;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

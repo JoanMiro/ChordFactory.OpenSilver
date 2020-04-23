@@ -79,6 +79,42 @@
     <None Remove="media\F2.wma" />
     <None Remove="media\G.wma" />
     <None Remove="media\G2.wma" />
+    <None Remove="media\PIANO_MED_A3.wav" />
+    <None Remove="media\PIANO_MED_A4.wav" />
+    <None Remove="media\PIANO_MED_A5.wav" />
+    <None Remove="media\PIANO_MED_AB3.wav" />
+    <None Remove="media\PIANO_MED_AB4.wav" />
+    <None Remove="media\PIANO_MED_AB5.wav" />
+    <None Remove="media\PIANO_MED_B3.wav" />
+    <None Remove="media\PIANO_MED_B4.wav" />
+    <None Remove="media\PIANO_MED_B5.wav" />
+    <None Remove="media\PIANO_MED_BB3.wav" />
+    <None Remove="media\PIANO_MED_BB4.wav" />
+    <None Remove="media\PIANO_MED_BB5.wav" />
+    <None Remove="media\PIANO_MED_C3.wav" />
+    <None Remove="media\PIANO_MED_C4.wav" />
+    <None Remove="media\PIANO_MED_C5.wav" />
+    <None Remove="media\PIANO_MED_D3.wav" />
+    <None Remove="media\PIANO_MED_D4.wav" />
+    <None Remove="media\PIANO_MED_D5.wav" />
+    <None Remove="media\PIANO_MED_DB3.wav" />
+    <None Remove="media\PIANO_MED_DB4.wav" />
+    <None Remove="media\PIANO_MED_DB5.wav" />
+    <None Remove="media\PIANO_MED_E3.wav" />
+    <None Remove="media\PIANO_MED_E4.wav" />
+    <None Remove="media\PIANO_MED_E5.wav" />
+    <None Remove="media\PIANO_MED_EB3.wav" />
+    <None Remove="media\PIANO_MED_EB4.wav" />
+    <None Remove="media\PIANO_MED_EB5.wav" />
+    <None Remove="media\PIANO_MED_F3.wav" />
+    <None Remove="media\PIANO_MED_F4.wav" />
+    <None Remove="media\PIANO_MED_F5.wav" />
+    <None Remove="media\PIANO_MED_G3.wav" />
+    <None Remove="media\PIANO_MED_G4.wav" />
+    <None Remove="media\PIANO_MED_G5.wav" />
+    <None Remove="media\PIANO_MED_GB3.wav" />
+    <None Remove="media\PIANO_MED_GB4.wav" />
+    <None Remove="media\PIANO_MED_GB5.wav" />
     <None Remove="MyTemplate_rename_me_after_export.vstemplate" />
   </ItemGroup>
 
@@ -87,6 +123,114 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ChordFactorySample.xml" />
+    <Resource Include="media\PIANO_MED_A3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_A4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_A5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_AB3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_AB4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_AB5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_B3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_B4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_B5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_BB3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_BB4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_BB5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_C3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_C4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_C5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_D3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_D4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_D5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_DB3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_DB4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_DB5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_E3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_E4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_E5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_EB3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_EB4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_EB5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_F3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_F4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_F5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_G3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_G4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_G5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_GB3.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_GB4.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="media\PIANO_MED_GB5.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Content Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
