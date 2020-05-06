@@ -14,7 +14,7 @@ namespace ChordFactory.OpenSilver.models
     /// <summary>
     /// Class representing a piano chord.
     /// </summary>
-    public class Chord
+    public class Chord : INoteSequence
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Chord"/> class.

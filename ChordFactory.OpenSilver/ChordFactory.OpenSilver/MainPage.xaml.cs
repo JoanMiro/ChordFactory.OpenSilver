@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Text;
     using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Input;
@@ -19,6 +20,7 @@
         private Grid scaleKeyboardGrid;
         private Run selectedChordLabel;
         private Run selectedScaleLabel;
+        private CheckBox finderModeCheckBox;
 
         private readonly List<Border> chordKeys = new List<Border>();
         private readonly List<Border> scaleKeys = new List<Border>();
@@ -34,7 +36,9 @@
         private int scaleRootNote;
         private readonly List<string> noteNames = new List<string> { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B" };
 
-        private const string WaveString = @"media\PIANO_MED_{0}.wav";
+        //private const string WaveString = @"ChordFactory.OpenSilver;resources/media/PIANO_MED_{0}.mp3";
+        private const string WaveString = @"ms-appx:///media/PIANO_MED_{0}.mp3";
+        /* ms-appx:///Audio/ */
 
         private readonly List<string> wavFiles = new List<string>
         {
@@ -43,21 +47,27 @@
             "C5", "DB5", "D5", "EB5", "E5", "F5", "GB5", "G5", "AB5", "A5", "BB5", "B5"
         };
 
+        private int finderRootNoteOffset;
+
         public MainPage()
         {
             this.InitializeComponent();
             this.Loaded += this.MainPage_Loaded;
         }
 
+        public Chord FinderChord { get; set; }
+        
         private void MainPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.DataContext = new MusicData();
+            this.MusicData = new MusicData();
+            this.DataContext = this.MusicData;
             this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
             this.scalesCombo = this.FindName("ScalesComboBox") as ComboBox;
             this.selectedChordLabel = this.FindName("SelectedChordLabel") as Run;
             this.selectedScaleLabel = this.FindName("SelectedScaleLabel") as Run;
             this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
-
+            this.finderModeCheckBox = this.FindName("FinderModeCheckBox") as CheckBox;
+            
             if (this.inversionCombo != null)
             {
                 this.inversionCombo.SelectionChanged += this.InversionCombo_SelectionChanged;
@@ -84,11 +94,15 @@
             this.PopulateOctaves();
             this.PopulateKeys();
 
+            this.FinderChord = new Chord { Description = "Mystery Chord", Notes = new List<int>() };
+
             this.chordsCombo.SelectedIndex = 0;
             this.scalesCombo.SelectedIndex = 0;
             this.inversionCombo.SelectedIndex = 0;
             this.AdjustKeyboardAspectRatios();
         }
+
+        public MusicData MusicData { get; set; }
 
         private void MainPage_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
@@ -183,8 +197,15 @@
 
         private void ChordKey_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.chordRootNote = this.chordKeys.IndexOf(sender as Border) % 12;
-            this.ShowChord(this.chordsCombo.SelectedItem as Chord);
+            if (this.finderModeCheckBox.IsChecked.HasValue && this.finderModeCheckBox.IsChecked == true)
+            {
+                this.OnFinderKeyboardTapped(this.chordKeys.IndexOf(sender as Border) % 12);
+            }
+            else
+            {
+                this.chordRootNote = this.chordKeys.IndexOf(sender as Border) % 12;
+                this.ShowChord(this.chordsCombo.SelectedItem as Chord);
+            }
         }
 
         private void ScaleKey_Tapped(object sender, TappedRoutedEventArgs e)
@@ -250,8 +271,8 @@
                 this.chordKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
             }
 
-            this.selectedChordLabel.Text = $"{this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord).Description} [{this.inversionCombo.SelectedItem}]";
-
+            this.selectedChordLabel.Text =
+                $"{this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord)?.Description} [{this.inversionCombo.SelectedItem}] - [{this.GetChordNoteNamesText(chord.Notes)}]";
             // this.PlayChord(chord);
         }
 
@@ -268,14 +289,15 @@
                 this.scaleKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.scaleKeyBorderSelected);
             }
 
-            this.selectedScaleLabel.Text = $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale).Description}";
+            this.selectedScaleLabel.Text =
+                $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale)?.Description} [{this.GetScaleNoteNamesText(scale.Notes)}]";
         }
 
         private MediaElement GetMediaElementFromResource(string resource)
         {
             try
             {
-                var mediaElement = new MediaElement { Source = new Uri(resource, UriKind.Relative) };
+                var mediaElement = new MediaElement { Source = new Uri(resource, UriKind.RelativeOrAbsolute) };
                 return mediaElement;
             }
             catch (Exception e)
@@ -284,5 +306,125 @@
                 throw;
             }
         }
+
+        private string GetScaleNoteNamesText(List<int> noteSequence)
+        {
+            var adjustedNotes = new string[noteSequence.Count];
+            for (var noteIndex = 0; noteIndex < noteSequence.Count; noteIndex++)
+            {
+                var note = noteSequence[noteIndex];
+                adjustedNotes[noteIndex] = this.noteNames[(note + this.scaleRootNote) % 12];
+            }
+
+            return string.Join("-", adjustedNotes);
+
+        }
+        
+        private string GetChordNoteNamesText(List<int> noteSequence)
+        {
+            var adjustedNotes = new List<int>(noteSequence);
+            var adjustedNoteNames = new string[noteSequence.Count];
+
+            for (var inversionNote = 0;
+                inversionNote < Math.Min(this.inversionCombo.SelectedIndex, noteSequence.Count);
+                inversionNote++)
+            {
+                adjustedNotes[inversionNote] += 12;
+            }
+            
+            adjustedNotes.Sort();
+
+            for (var noteIndex = 0; noteIndex < adjustedNotes.Count; noteIndex++)
+            {
+                adjustedNoteNames[noteIndex] = this.noteNames[(adjustedNotes[noteIndex] + this.chordRootNote) % 12];
+            }
+
+            return string.Join("-", adjustedNoteNames);
+        }
+
+        private void OnFinderKeyboardTapped(int notePicked)
+        {
+            if (this.FinderChord.Notes.Contains(notePicked))
+            {
+                this.FinderChord.Notes.Remove(notePicked);
+            }
+            else
+            {
+                this.FinderChord.Notes.Add(notePicked);
+            }
+
+            this.FinderChord.Notes.Sort();
+            this.FindChord();
+        }
+
+        private void FindChord(int inversion = 0)
+        {
+            var chordFound = false;
+            Chord foundChord = null;
+            this.IdentifiedChord = null;
+
+            var inversionNotes = this.FinderChord.Notes.ToArray();
+            this.SelectedInversion = 0;
+
+            if (this.FinderChord.Notes.Count >= 3)
+            {
+                for (var inversionNote = 0; inversionNote < inversion; inversionNote++)
+                {
+                    if (inversionNotes.Length > inversionNote && inversionNotes[inversionNotes.Length - 1 - inversionNote] >= 12)
+                    {
+                        inversionNotes[inversionNotes.Length - 1 - inversionNote] -= 12;
+                        this.SelectedInversion = (Inversion)inversion;
+                    }
+                }
+
+                Array.Sort(inversionNotes);
+            }
+
+            var finderRootOffset = inversionNotes.Length > 0 ? inversionNotes[0] : 0;
+
+            foreach (var chord in this.MusicData.Chords.Where(c => c.Notes.Count == inversionNotes.Length))
+            {
+                foreach (var chordNote in inversionNotes)
+                {
+                    if (!chord.Notes.Contains((chordNote - finderRootOffset) % 12))
+                    {
+                        chordFound = false;
+                        break;
+                    }
+
+                    chordFound = true;
+                    foundChord = chord;
+                }
+
+                if (chordFound)
+                {
+                    this.FinderRootNoteOffset = finderRootOffset;
+                    this.IdentifiedChord = foundChord;
+                    this.ShowChord(this.IdentifiedChord);
+                    break;
+                }
+
+                this.FinderRootNoteOffset = finderRootOffset;
+            }
+
+            // Not found - look for inversions...
+            if (chordFound == false && inversion < 3)
+            {
+                this.FindChord(++inversion);
+            }
+        }
+
+        public int FinderRootNoteOffset
+        {
+            get => this.finderRootNoteOffset;
+            set
+            {
+                this.finderRootNoteOffset = value % 12;
+            }
+        }
+
+        public Inversion SelectedInversion { get; set; }
+
+        public Chord IdentifiedChord { get; set; }
     }
 }

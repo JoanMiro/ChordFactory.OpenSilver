@@ -14,7 +14,7 @@ namespace ChordFactory.OpenSilver.models
     /// <summary>
     /// Class representing a music scale.
     /// </summary>
-    public class Scale
+    public class Scale : INoteSequence
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Scale"/> class.

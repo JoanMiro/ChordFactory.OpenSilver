@@ -46,6 +46,7 @@
             VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.Children>
@@ -113,8 +114,12 @@
                             Grid.Column="0"
                             Style="{StaticResource SelectedItemLabel}">
                             <TextBlock.Inlines>
-                                <Run Text="Current Chord: " />
-                                <Run Foreground="Yellow" FontStyle="Italic" x:Name="SelectedChordLabel" />
+                                <Run Text="Current Chord" />
+                                <LineBreak />
+                                <Run
+                                    x:Name="SelectedChordLabel"
+                                    FontStyle="Italic"
+                                    Foreground="Yellow" />
                             </TextBlock.Inlines>
                         </TextBlock>
                         <TextBlock
@@ -136,8 +141,12 @@
                             Grid.Column="1"
                             Style="{StaticResource SelectedItemLabel}">
                             <TextBlock.Inlines>
-                                <Run Text="Current Scale: " />
-                                <Run Foreground="Yellow" FontStyle="Italic" x:Name="SelectedScaleLabel" />
+                                <Run Text="Current Scale" />
+                                <LineBreak />
+                                <Run
+                                    x:Name="SelectedScaleLabel"
+                                    FontStyle="Italic"
+                                    Foreground="Yellow" />
                             </TextBlock.Inlines>
                         </TextBlock>
                         <Grid
@@ -676,8 +685,25 @@
                         </Grid>
                     </Grid.Children>
                 </Grid>
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="0,20"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel.Children>
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            VerticalAlignment="Top"
+                            Style="{StaticResource HeaderLabel}"
+                            Text="Chord Finder Mode" />
+                        <CheckBox
+                            x:Name="FinderModeCheckBox"
+                            VerticalAlignment="Top"
+                            FontSize="16"
+                            IsChecked="False" />
+                    </StackPanel.Children>
+                </StackPanel>
             </Grid.Children>
         </Grid>
-
     </Page.Content>
 </Page>
