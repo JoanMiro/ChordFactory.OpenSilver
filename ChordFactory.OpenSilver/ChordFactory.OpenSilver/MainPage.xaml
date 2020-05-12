@@ -120,6 +120,11 @@
                                     x:Name="SelectedChordLabel"
                                     FontStyle="Italic"
                                     Foreground="Yellow" />
+                                <LineBreak />
+                                <Run
+                                    x:Name="SelectedChordInversionNotesLabel"
+                                    FontStyle="Italic"
+                                    Foreground="LightBlue" />
                             </TextBlock.Inlines>
                         </TextBlock>
                         <TextBlock
@@ -147,6 +152,11 @@
                                     x:Name="SelectedScaleLabel"
                                     FontStyle="Italic"
                                     Foreground="Yellow" />
+                                <LineBreak />
+                                <Run
+                                    x:Name="SelectedScaleNotesLabel"
+                                    FontStyle="Italic"
+                                    Foreground="LightBlue" />
                             </TextBlock.Inlines>
                         </TextBlock>
                         <Grid

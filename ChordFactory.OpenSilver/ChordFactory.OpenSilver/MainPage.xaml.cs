@@ -19,7 +19,9 @@
         private Grid chordKeyboardGrid;
         private Grid scaleKeyboardGrid;
         private Run selectedChordLabel;
+        private Run selectedChordInversionNotesLabel;
         private Run selectedScaleLabel;
+        private Run selectedScaleNotesLabel;
         private CheckBox finderModeCheckBox;
 
         private readonly List<Border> chordKeys = new List<Border>();
@@ -56,7 +58,7 @@
         }
 
         public Chord FinderChord { get; set; }
-        
+
         private void MainPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             this.MusicData = new MusicData();
@@ -64,10 +66,14 @@
             this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
             this.scalesCombo = this.FindName("ScalesComboBox") as ComboBox;
             this.selectedChordLabel = this.FindName("SelectedChordLabel") as Run;
+            this.selectedChordInversionNotesLabel = this.FindName("SelectedChordInversionNotesLabel") as Run;
+
             this.selectedScaleLabel = this.FindName("SelectedScaleLabel") as Run;
+            this.selectedScaleNotesLabel = this.FindName("SelectedScaleNotesLabel") as Run;
+
             this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
             this.finderModeCheckBox = this.FindName("FinderModeCheckBox") as CheckBox;
-            
+
             if (this.inversionCombo != null)
             {
                 this.inversionCombo.SelectionChanged += this.InversionCombo_SelectionChanged;
@@ -271,8 +277,16 @@
                 this.chordKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
             }
 
-            this.selectedChordLabel.Text =
-                $"{this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord)?.Description} [{this.inversionCombo.SelectedItem}] - [{this.GetChordNoteNamesText(chord.Notes)}]";
+            this.selectedChordLabel.Text = $"{this.noteNames[this.chordRootNote]} {(this.chordsCombo.SelectedItem as Chord)?.Description}";
+
+            var inversionText =string.Empty;
+            if (this.inversionCombo.SelectedItem != null &&this.inversionCombo.SelectedIndex > 0 )
+            {
+                inversionText = $" - {this.inversionCombo.SelectedItem.ToString().ToLower()} inversion";
+            }
+
+            this.selectedChordInversionNotesLabel.Text = $"[{this.GetChordNoteNamesText(chord.Notes)}{inversionText}]";
+
             // this.PlayChord(chord);
         }
 
@@ -289,8 +303,8 @@
                 this.scaleKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.scaleKeyBorderSelected);
             }
 
-            this.selectedScaleLabel.Text =
-                $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale)?.Description} [{this.GetScaleNoteNamesText(scale.Notes)}]";
+            this.selectedScaleLabel.Text = $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale)?.Description}";
+            this.selectedScaleNotesLabel.Text = $"[{this.GetScaleNoteNamesText(scale.Notes)}]";
         }
 
         private MediaElement GetMediaElementFromResource(string resource)
@@ -319,7 +333,7 @@
             return string.Join("-", adjustedNotes);
 
         }
-        
+
         private string GetChordNoteNamesText(List<int> noteSequence)
         {
             var adjustedNotes = new List<int>(noteSequence);
@@ -331,7 +345,7 @@
             {
                 adjustedNotes[inversionNote] += 12;
             }
-            
+
             adjustedNotes.Sort();
 
             for (var noteIndex = 0; noteIndex < adjustedNotes.Count; noteIndex++)
