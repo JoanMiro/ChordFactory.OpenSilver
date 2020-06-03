@@ -60,7 +60,9 @@
   
   <ItemGroup>
     <None Remove="ChordFactory.xml" />
+    <None Remove="ChordKeyboardPage.xaml" />
     <None Remove="controls\BlackPianoKey.xaml" />
+    <None Remove="controls\ColourPicker.xaml" />
     <None Remove="controls\GrandStaff.xaml" />
     <None Remove="controls\Octave.xaml" />
     <None Remove="controls\PianoKey.xaml" />
@@ -69,6 +71,7 @@
     <None Remove="controls\TestControl.xaml" />
     <None Remove="controls\WhitePianoKey.xaml" />
     <None Remove="EmptyOpenSilverMigrationApplication.csproj.vspscc" />
+    <None Remove="FinderKeyboardPage.xaml" />
     <None Remove="images\Bass_clef.svg" />
     <None Remove="images\Treble_clef.svg" />
     <None Remove="MainPage - Copy.xaml" />
@@ -163,8 +166,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ChordFactorySample.xml" />
+    <Content Include="controls\ColourPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="ChordKeyboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="FinderKeyboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <Content Include="MainPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="ScaleKeyboardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
     <EmbeddedResource Include="media\PIANO_MED_A3.mp3" />
@@ -214,8 +233,20 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Update="ChordKeyboardPage.xaml.cs">
+      <DependentUpon>ChordKeyboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="FinderKeyboardPage.xaml.cs">
+      <DependentUpon>FinderKeyboardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="ScaleKeyboardPage.xaml.cs">
+      <DependentUpon>ScaleKeyboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -226,7 +257,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="controls\" />
     <Folder Include="images\" />
   </ItemGroup>
   

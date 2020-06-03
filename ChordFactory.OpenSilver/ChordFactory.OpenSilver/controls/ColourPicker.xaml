@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="ChordFactory.OpenSilver.controls.ColourPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ChordFactory.OpenSilver.controls">
+    <Page.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="154" />
+            </Grid.ColumnDefinitions>
+            <Grid.Children>
+                <Grid Grid.Row="0" Grid.Column="0" Background="Gray"
+                  HorizontalAlignment="Stretch" Margin="2" VerticalAlignment="Stretch">
+                    <Grid.Children>
+                        <Border x:Name="ColourPickerBoxView" BorderBrush="{Binding Colour}" />
+                    </Grid.Children>
+                </Grid>
+                <Image x:Name="ColourPickerImage" Grid.Row="0" Grid.Column="0"
+                   HorizontalAlignment="Stretch" Source="ColourPicker.Assets.ColourPicker.png" VerticalAlignment="Stretch" />
+                <ComboBox x:Name="SelectionPicker" Grid.Row="0" Grid.Column="1"
+                    SelectionChanged="PickerSelectedIndexChanged" />
+            </Grid.Children>
+        </Grid>
+    </Page.Content>
+</Page>
