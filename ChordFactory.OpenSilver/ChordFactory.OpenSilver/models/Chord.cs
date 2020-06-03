@@ -35,5 +35,14 @@ namespace ChordFactory.OpenSilver.models
         /// </summary>
         /// <value>The notes.</value>
         public List<int> Notes { get; set; }
+
+        public static Chord Create(string description, List<int> notes)
+        {
+            return new Chord
+            {
+                Notes = notes,
+                Description = description
+            };
+        }
     }
 }

@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /ChordFactory.OpenSilver/ChordFactory.OpenSilver/media/Excluded
+*.DotSettings

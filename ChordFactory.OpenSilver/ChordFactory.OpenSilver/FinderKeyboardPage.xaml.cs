@@ -12,7 +12,7 @@
     using models;
     using viewModels;
 
-    public partial class MainPage : Page, INotifyPropertyChanged
+    public partial class FinderKeyboardPage : Page, INotifyPropertyChanged
     {
         //private const string WaveString = @"ChordFactory.OpenSilver;resources/media/PIANO_MED_{0}.mp3";
         private const string WaveString = @"ms-appx:///media/PIANO_MED_{0}.mp3";
@@ -23,11 +23,11 @@
         private readonly List<Border> chordKeys = new List<Border>();
         private readonly Color chordWhiteKeySelected = Colors.SkyBlue;
         private readonly List<string> noteNames = new List<string> { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B" };
-        private readonly Color scaleBlackKeySelected = Colors.SeaGreen;
-        private readonly Color scaleKeyBorderSelected = Colors.DarkSlateGray;
-        private readonly List<Border> scaleKeys = new List<Border>();
+        //private readonly Color scaleBlackKeySelected = Colors.SeaGreen;
+        //private readonly Color scaleKeyBorderSelected = Colors.DarkSlateGray;
+        //private readonly List<Border> scaleKeys = new List<Border>();
 
-        private readonly Color scaleWhiteKeySelected = Colors.DarkSeaGreen;
+        //private readonly Color scaleWhiteKeySelected = Colors.DarkSeaGreen;
         /* ms-appx:///Audio/ */
 
         private readonly List<string> wavFiles = new List<string>
@@ -45,20 +45,20 @@
 
         private int finderRootNoteOffset;
         private ComboBox inversionCombo;
-        private Grid scaleKeyboardGrid;
-        private int scaleRootNote;
-        private ComboBox scalesCombo;
+        //private Grid scaleKeyboardGrid;
+        //private int scaleRootNote;
+        //private ComboBox scalesCombo;
         private Run selectedChordInversionNotesLabel;
         private Run selectedChordLabel;
-        private Run selectedScaleLabel;
-        private Run selectedScaleNotesLabel;
+        //private Run selectedScaleLabel;
+        //private Run selectedScaleNotesLabel;
 
-        public MainPage()
+        public FinderKeyboardPage()
         {
             this.InitializeComponent();
-            //this.Loaded += this.MainPage_Loaded;
-            //this.PropertyChanged += this.MainPage_PropertyChanged;
-            //this.FinderViewModel = new FinderViewModel();
+            this.Loaded += this.MainPage_Loaded;
+            this.PropertyChanged += this.MainPage_PropertyChanged;
+            this.FinderViewModel = new FinderViewModel();
 
         }
 
@@ -95,12 +95,12 @@
             this.MusicData = new MusicData();
             this.DataContext = this.MusicData;
             this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
-            this.scalesCombo = this.FindName("ScalesComboBox") as ComboBox;
+            //this.scalesCombo = this.FindName("ScalesComboBox") as ComboBox;
             this.selectedChordLabel = this.FindName("SelectedChordLabel") as Run;
             this.selectedChordInversionNotesLabel = this.FindName("SelectedChordInversionNotesLabel") as Run;
 
-            this.selectedScaleLabel = this.FindName("SelectedScaleLabel") as Run;
-            this.selectedScaleNotesLabel = this.FindName("SelectedScaleNotesLabel") as Run;
+            //this.selectedScaleLabel = this.FindName("SelectedScaleLabel") as Run;
+            //this.selectedScaleNotesLabel = this.FindName("SelectedScaleNotesLabel") as Run;
 
             this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
             this.finderModeCheckBox = this.FindName("FinderModeCheckBox") as CheckBox;
@@ -115,13 +115,13 @@
                 this.chordsCombo.SelectionChanged += this.ChordsCombo_SelectionChanged;
             }
 
-            if (this.scalesCombo != null)
-            {
-                this.scalesCombo.SelectionChanged += this.ScalesCombo_SelectionChanged;
-            }
+            //if (this.scalesCombo != null)
+            //{
+            //    this.scalesCombo.SelectionChanged += this.ScalesCombo_SelectionChanged;
+            //}
 
             this.chordKeyboardGrid = (Grid)this.FindName("ChordKeyboardGrid");
-            this.scaleKeyboardGrid = (Grid)this.FindName("ScaleKeyboardGrid");
+            //this.scaleKeyboardGrid = (Grid)this.FindName("ScaleKeyboardGrid");
 
             if (this.chordKeyboardGrid != null)
             {
@@ -134,7 +134,7 @@
             this.FinderChord = new Chord { Description = "Mystery Chord", Notes = new List<int>() };
 
             this.chordsCombo.SelectedIndex = 0;
-            this.scalesCombo.SelectedIndex = 0;
+            //this.scalesCombo.SelectedIndex = 0;
             this.inversionCombo.SelectedIndex = 0;
             this.SelectedInversionEnum = 0;
             this.AdjustKeyboardAspectRatios();
@@ -147,8 +147,8 @@
 
         private void AdjustKeyboardAspectRatios()
         {
-            var newScaleKeyboardHeight = this.scaleKeyboardGrid.ActualWidth * 0.45;
-            this.chordKeyboardGrid.Height = this.scaleKeyboardGrid.Height = newScaleKeyboardHeight;
+            var newKeyboardHeight = this.chordKeyboardGrid.ActualWidth * 0.45;
+            this.chordKeyboardGrid.Height = newKeyboardHeight;
         }
 
         private void InversionCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -174,20 +174,20 @@
                 }
             }
 
-            foreach (var octaveGrid in this.scaleKeyboardGrid.Children)
-            {
-                if (octaveGrid is Grid currentOctave)
-                {
-                    for (var keyIndex = 0; keyIndex < currentOctave.Children.Count; keyIndex++)
-                    {
-                        if (currentOctave.Children[keyIndex] is Border key)
-                        {
-                            key.Tapped += this.ScaleKey_Tapped;
-                            this.scaleKeys.Add(key);
-                        }
-                    }
-                }
-            }
+            //foreach (var octaveGrid in this.scaleKeyboardGrid.Children)
+            //{
+            //    if (octaveGrid is Grid currentOctave)
+            //    {
+            //        for (var keyIndex = 0; keyIndex < currentOctave.Children.Count; keyIndex++)
+            //        {
+            //            if (currentOctave.Children[keyIndex] is Border key)
+            //            {
+            //                key.Tapped += this.ScaleKey_Tapped;
+            //                this.scaleKeys.Add(key);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         public void PlayChord(Chord chord)
@@ -259,11 +259,11 @@
             }
         }
 
-        private void ScaleKey_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            this.scaleRootNote = this.scaleKeys.IndexOf(sender as Border) % 12;
-            this.ShowScale(this.scalesCombo.SelectedItem as Scale);
-        }
+        //private void ScaleKey_Tapped(object sender, TappedRoutedEventArgs e)
+        //{
+        //    this.scaleRootNote = this.scaleKeys.IndexOf(sender as Border) % 12;
+        //    this.ShowScale(this.scalesCombo.SelectedItem as Scale);
+        //}
 
         private void PopulateOctaves()
         {
@@ -282,13 +282,13 @@
             }
         }
 
-        private void ScalesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if ((sender as ComboBox)?.SelectedItem is Scale scale)
-            {
-                this.ShowScale(scale);
-            }
-        }
+        //private void ScalesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if ((sender as ComboBox)?.SelectedItem is Scale scale)
+        //    {
+        //        this.ShowScale(scale);
+        //    }
+        //}
 
         private void ShowChord(Chord chord)
         {
@@ -383,22 +383,22 @@
                 });
         }
 
-        private void ShowScale(Scale scale)
-        {
-            this.scaleKeys.ForEach(k => k.Background = new SolidColorBrush((string)k.Tag == "Ivory" ? Colors.Ivory : Colors.Black));
+        //private void ShowScale(Scale scale)
+        //{
+        //    this.scaleKeys.ForEach(k => k.Background = new SolidColorBrush((string)k.Tag == "Ivory" ? Colors.Ivory : Colors.Black));
 
-            foreach (var note in scale.Notes)
-            {
-                var adjustedNoteIndex = (note + this.scaleRootNote) % 24;
-                var colourTag = (string)this.chordKeys[adjustedNoteIndex].Tag;
-                this.scaleKeys[adjustedNoteIndex].Background =
-                    new SolidColorBrush(colourTag == "Ivory" ? this.scaleWhiteKeySelected : this.scaleBlackKeySelected);
-                this.scaleKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.scaleKeyBorderSelected);
-            }
+        //    foreach (var note in scale.Notes)
+        //    {
+        //        var adjustedNoteIndex = (note + this.scaleRootNote) % 24;
+        //        var colourTag = (string)this.chordKeys[adjustedNoteIndex].Tag;
+        //        this.scaleKeys[adjustedNoteIndex].Background =
+        //            new SolidColorBrush(colourTag == "Ivory" ? this.scaleWhiteKeySelected : this.scaleBlackKeySelected);
+        //        this.scaleKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.scaleKeyBorderSelected);
+        //    }
 
-            this.selectedScaleLabel.Text = $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale)?.Description}";
-            this.selectedScaleNotesLabel.Text = $"[{this.GetScaleNoteNamesText(scale.Notes)}]";
-        }
+        //    this.selectedScaleLabel.Text = $"{this.noteNames[this.scaleRootNote]} {(this.scalesCombo.SelectedItem as Scale)?.Description}";
+        //    this.selectedScaleNotesLabel.Text = $"[{this.GetScaleNoteNamesText(scale.Notes)}]";
+        //}
 
         private MediaElement GetMediaElementFromResource(string resource)
         {
@@ -414,17 +414,17 @@
             }
         }
 
-        private string GetScaleNoteNamesText(List<int> noteSequence)
-        {
-            var adjustedNotes = new string[noteSequence.Count];
-            for (var noteIndex = 0; noteIndex < noteSequence.Count; noteIndex++)
-            {
-                var note = noteSequence[noteIndex];
-                adjustedNotes[noteIndex] = this.noteNames[(note + this.scaleRootNote) % 12];
-            }
+        //private string GetScaleNoteNamesText(List<int> noteSequence)
+        //{
+        //    var adjustedNotes = new string[noteSequence.Count];
+        //    for (var noteIndex = 0; noteIndex < noteSequence.Count; noteIndex++)
+        //    {
+        //        var note = noteSequence[noteIndex];
+        //        adjustedNotes[noteIndex] = this.noteNames[(note + this.scaleRootNote) % 12];
+        //    }
 
-            return string.Join("-", adjustedNotes);
-        }
+        //    return string.Join("-", adjustedNotes);
+        //}
 
         private string GetChordNoteNamesText(List<int> noteSequence)
         {
