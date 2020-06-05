@@ -38,12 +38,14 @@ namespace ChordFactory.OpenSilver
             }
 
             //Task.Run(this.LoadSettings);
-            this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel };
-            this.FinderViewModel = new FinderViewModel { Settings = this.SettingsViewModel };
+            this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel, MusicData = this.MusicData };
+            this.FinderViewModel = new FinderViewModel { Settings = this.SettingsViewModel, MusicData =  this.MusicData};
             this.SettingsPage = new SettingsPage();
             var mainPage = new MainPage();
             Window.Current.Content = mainPage;
         }
+
+        public MusicData MusicData => new MusicData();
 
         public SettingsPage SettingsPage { get; set; }
 

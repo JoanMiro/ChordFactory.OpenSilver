@@ -62,7 +62,6 @@
         /// </summary>
         public ChordDataViewModel()
         {
-            this.MusicData = new MusicData();
             this.ChordKeyboardTappedCommand = new DelegateCommand(this.OnChordKeyboardTapped, this.ChordKeyboardTappedCanExecute);
             this.FinderKeyboardTappedCommand = new DelegateCommand(this.OnFinderKeyboardTapped, this.FinderKeyboardTappedCanExecute);
             this.ScaleKeyboardTappedCommand = new DelegateCommand(this.OnScaleKeyboardTapped, this.ScaleKeyboardTappedCanExecute);

@@ -59,6 +59,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="AboutTab.xaml" />
     <None Remove="ChordFactory.xml" />
     <None Remove="ChordKeyboardPage.xaml" />
     <None Remove="controls\BlackPianoKey.xaml" />
@@ -166,6 +167,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ChordFactorySample.xml" />
+    <Content Include="AboutTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <Content Include="controls\ColourPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
