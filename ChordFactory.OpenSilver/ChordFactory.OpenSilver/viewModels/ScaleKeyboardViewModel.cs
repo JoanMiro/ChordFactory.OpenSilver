@@ -1,6 +1,7 @@
 ﻿namespace ChordFactory.OpenSilver.viewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using models;
@@ -12,21 +13,17 @@
             this.Title = "Keyboard";
             this.Items = new ObservableCollection<Item>();
             this.LoadItemsCommand = new DelegateCommand(this.ExecuteLoadItemsCommand(), this.ExecuteLoadItemsCanExecute);
-
-            //MessagingCenter.Subscribe<NewItemPage, Item>(
-            //    this, "AddItem", async (obj, item) =>
-            //    {
-            //        var newItem = item;
-            //        this.Items.Add(newItem);
-            //        await this.DataStore.AddItemAsync(newItem);
-            //    });
         }
+
         private bool ExecuteLoadItemsCanExecute(object paramList)
         {
             return true;
         }
 
+        public List<Scale> Scales => this.MusicData.Scales;
+
         public ObservableCollection<Item> Items { get; set; }
+
         public DelegateCommand LoadItemsCommand { get; set; }
 
         private Action<object> ExecuteLoadItemsCommand()

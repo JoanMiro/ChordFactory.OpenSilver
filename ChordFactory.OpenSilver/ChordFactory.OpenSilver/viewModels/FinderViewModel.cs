@@ -22,15 +22,12 @@
 
         private Inversion selectedInversion;
         
-        public SettingsViewModel Settings { get; set; }
-
         public FinderViewModel()
         {
             this.FinderKeyboardTappedCommand = new DelegateCommand(this.OnFinderKeyboardTapped, this.FinderKeyboardTappedCanExecute);
             this.selectedInversion = this.Inversions[0];
             this.FinderChord = Chord.Create("Mystery Chord", new List<int>());
         }
-
 
         public string FoundChordFullName
         {
@@ -129,11 +126,8 @@
 
         public ICommand FinderKeyboardTappedCommand { get; set; }
         
-        public MusicData MusicData { get; set; }
-
         public List<Chord> Chords => this.MusicData.Chords;
-
-
+        
         private bool FinderKeyboardTappedCanExecute(object paramList)
         {
             return true;

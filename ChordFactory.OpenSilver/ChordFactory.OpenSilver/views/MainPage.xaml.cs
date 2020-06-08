@@ -1,4 +1,4 @@
-﻿namespace ChordFactory.OpenSilver
+﻿namespace ChordFactory.OpenSilver.views
 {
     using System;
     using System.Collections.Generic;
@@ -86,7 +86,7 @@
             set => this.finderRootNoteOffset = value % 12;
         }
 
-        public InversionEnum SelectedInversionEnum { get; set; }
+        public InversionEnum SelectedInversion { get; set; }
 
         public Chord IdentifiedChord { get; set; }
 
@@ -136,7 +136,7 @@
             this.chordsCombo.SelectedIndex = 0;
             this.scalesCombo.SelectedIndex = 0;
             this.inversionCombo.SelectedIndex = 0;
-            this.SelectedInversionEnum = 0;
+            this.SelectedInversion = 0;
             this.AdjustKeyboardAspectRatios();
         }
 
@@ -153,7 +153,7 @@
 
         private void InversionCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.SelectedInversionEnum = (InversionEnum)((ComboBox)sender).SelectedIndex;
+            this.SelectedInversion = (InversionEnum)((ComboBox)sender).SelectedIndex;
             this.ShowChord(this.chordsCombo.SelectedItem as Chord);
         }
 
@@ -298,7 +298,7 @@
             chord.Notes.CopyTo(adjustedNotes);
 
             for (var inversionNote = 0;
-                inversionNote < Math.Min((int)this.SelectedInversionEnum, chord.Notes.Count);
+                inversionNote < Math.Min((int)this.SelectedInversion, chord.Notes.Count);
                 inversionNote++)
             {
                 adjustedNotes[inversionNote] += 12;
@@ -321,9 +321,9 @@
             this.selectedChordLabel.Text = $"{this.noteNames[this.chordRootNote]} {chord.Description}";
 
             var inversionText = string.Empty;
-            if (this.SelectedInversionEnum != 0)
+            if (this.SelectedInversion != 0)
             {
-             inversionText = $" - {this.SelectedInversionEnum.ToString().ToLower()} inversion";
+             inversionText = $" - {this.SelectedInversion.ToString().ToLower()} inversion";
             }
 
             this.selectedChordInversionNotesLabel.Text = $"[{this.GetChordNoteNamesText(chord.Notes)}{inversionText}]";
@@ -470,7 +470,7 @@
             this.IdentifiedChord = null;
 
             var inversionNotes = this.FinderChord.Notes.ToArray();
-            this.SelectedInversionEnum = 0;
+            this.SelectedInversion = 0;
 
             if (this.FinderChord.Notes.Count >= 3)
             {
@@ -479,7 +479,7 @@
                     if (inversionNotes.Length > inversionNote && inversionNotes[inversionNotes.Length - 1 - inversionNote] >= 12)
                     {
                         inversionNotes[inversionNotes.Length - 1 - inversionNote] -= 12;
-                        this.SelectedInversionEnum = (InversionEnum)inversion;
+                        this.SelectedInversion = (InversionEnum)inversion;
                     }
                 }
 

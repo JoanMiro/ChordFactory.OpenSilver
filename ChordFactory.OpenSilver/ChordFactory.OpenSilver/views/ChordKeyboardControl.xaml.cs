@@ -1,4 +1,4 @@
-﻿namespace ChordFactory.OpenSilver
+﻿namespace ChordFactory.OpenSilver.views
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
 
     using viewModels;
 
-    public partial class FinderKeyboardPage : Page
+    public partial class ChordKeyboardControl : UserControl, INotifyPropertyChanged
     {
         //private const string WaveString = @"ChordFactory.OpenSilver;resources/media/PIANO_MED_{0}.mp3";
         private const string WaveString = @"ms-appx:///media/PIANO_MED_{0}.mp3";
@@ -35,25 +35,49 @@
         };
 
         private Grid chordKeyboardGrid;
-        private int chordRootNote;
 
-        public FinderKeyboardPage()
+        private int chordRootNote;
+        private ComboBox chordsCombo;
+
+        private ComboBox inversionCombo;
+        private Run selectedChordInversionNotesLabel;
+        private Run selectedChordLabel;
+
+        public ChordKeyboardControl()
         {
             this.InitializeComponent();
             this.Loaded += this.MainPage_Loaded;
+            this.PropertyChanged += this.MainPage_PropertyChanged;
+
         }
 
-        public FinderViewModel FinderViewModel => this.DataContext as FinderViewModel;
+        private void MainPage_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+        }
 
-        public InversionEnum SelectedInversionEnum { get; set; }
-
-        public Chord IdentifiedChord { get; set; }
+        public InversionEnum SelectedInversion { get; set; }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = ((App)Application.Current)?.FinderViewModel;
-            this.FinderViewModel.PropertyChanged += this.ChordDataPropertyChanged;
-            this.FinderViewModel.Settings.PropertyChanged += this.SettingsPropertyChanged;
+            this.DataContext = ((App)Application.Current)?.ChordKeyboardViewModel;
+            this.ChordKeyboardViewModel.PropertyChanged += this.ChordKeyboardViewModelPropertyChanged;
+            this.ChordKeyboardViewModel.Settings.PropertyChanged += this.SettingsPropertyChanged;
+
+            this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
+            this.selectedChordLabel = this.FindName("SelectedChordLabel") as Run;
+            this.selectedChordInversionNotesLabel = this.FindName("SelectedChordInversionNotesLabel") as Run;
+
+            this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
+
+            if (this.inversionCombo != null)
+            {
+                this.inversionCombo.SelectionChanged += this.InversionCombo_SelectionChanged;
+            }
+
+            if (this.chordsCombo != null)
+            {
+                this.chordsCombo.SelectionChanged += this.ChordsCombo_SelectionChanged;
+            }
 
             this.chordKeyboardGrid = (Grid)this.FindName("ChordKeyboardGrid");
 
@@ -64,25 +88,36 @@
 
             this.PopulateKeys();
 
-            this.SelectedInversionEnum = 0;
+            if (this.chordsCombo.Items.Count > 0)
+            {
+                this.chordsCombo.SelectedIndex = 0;
+            }
+
+            if (this.inversionCombo.Items.Count > 0)
+            {
+                this.inversionCombo.SelectedIndex = 0;
+            }
+
+            this.SelectedInversion = 0;
             this.AdjustKeyboardAspectRatios();
         }
 
         private void SettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-
-
+            // throw new NotImplementedException();
         }
 
-        private void ChordDataPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void ChordKeyboardViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "FinderRootNoteOffset")
+            if (e.PropertyName == "ChordRootNote")
             {
-                this.ShowChord();
+                //this.ShowChord();
                 // this.PlayChord();
             }
         }
 
+        public ChordKeyboardViewModel ChordKeyboardViewModel => this.DataContext as ChordKeyboardViewModel;
+        
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.AdjustKeyboardAspectRatios();
@@ -91,7 +126,16 @@
         private void AdjustKeyboardAspectRatios()
         {
             var newKeyboardHeight = this.chordKeyboardGrid.ActualWidth * 0.45;
-            this.chordKeyboardGrid.Height = newKeyboardHeight;
+            this.chordKeyboardGrid.Height = Math.Min(400, Math.Max(newKeyboardHeight, 300));
+        }
+
+        private void InversionCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.SelectedInversion = (InversionEnum)((ComboBox)sender).SelectedIndex;
+            if (this.chordsCombo.SelectedItem != null)
+            {
+                this.ShowChord(this.chordsCombo.SelectedItem as Chord);
+            }
         }
 
         private void PopulateKeys()
@@ -119,6 +163,12 @@
             var pauseLength = new TimeSpan(0, 0, 0, 1, 500);
 
             var actualChordNotes = chord.Notes.Select(c => (c + this.chordRootNote) % 24).ToList();
+            for (var inversionNote = 0;
+                inversionNote < Math.Min(this.inversionCombo.SelectedIndex, chord.Notes.Count);
+                inversionNote++)
+            {
+                actualChordNotes[inversionNote] += 12;
+            }
 
             actualChordNotes.Sort();
 
@@ -152,32 +202,56 @@
         private void ChordKey_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.chordRootNote = this.chordKeys.IndexOf(sender as Border) % 12;
-            this.FinderViewModel.FinderKeyboardTappedCommand.Execute($"Key{this.chordKeys.IndexOf(sender as Border)}");
-            this.ShowChord();
+            this.ShowChord(this.chordsCombo.SelectedItem as Chord);
         }
 
-        private void ShowChord()
+        private void ChordsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as ComboBox)?.SelectedItem is Chord chord)
+            {
+                this.ShowChord(chord);
+            }
+        }
+
+        private void ShowChord(Chord chord)
         {
             this.ClearKeySelection();
 
-            if (this.FinderViewModel.FinderChord.Notes.Count > 0)
+            var adjustedNotes = new int[chord.Notes.Count];
+            chord.Notes.CopyTo(adjustedNotes);
+
+            for (var inversionNote = 0;
+                inversionNote < Math.Min((int)this.SelectedInversion, chord.Notes.Count);
+                inversionNote++)
             {
-                var actualChordNotes = this.FinderViewModel.FinderChord.Notes.ToArray();
-
-                // Cope with overflow
-                for (var note = 0; note < actualChordNotes.Length; note++)
-                {
-                    actualChordNotes[note] = actualChordNotes[note] % this.chordKeys.Count;
-                }
-
-                foreach (var note in actualChordNotes)
-                {
-                    var colourTag = (string)this.chordKeys[note].Tag;
-                    this.chordKeys[note].Background =
-                        new SolidColorBrush(colourTag == "Ivory" ? this.chordWhiteKeySelected : this.chordBlackKeySelected);
-                    this.chordKeys[note].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
-                }
+                adjustedNotes[inversionNote] += 12;
             }
+
+            for (var index = 0; index < adjustedNotes.Length; index++)
+            {
+                adjustedNotes[index] = adjustedNotes[index] % 24;
+            }
+
+            foreach (var note in adjustedNotes)
+            {
+                var adjustedNoteIndex = (note + this.chordRootNote) % 24;
+                var colourTag = (string)this.chordKeys[adjustedNoteIndex].Tag;
+                this.chordKeys[adjustedNoteIndex].Background =
+                    new SolidColorBrush(colourTag == "Ivory" ? this.chordWhiteKeySelected : this.chordBlackKeySelected);
+                this.chordKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
+            }
+
+            this.selectedChordLabel.Text = $"{this.noteNames[this.chordRootNote]} {chord.Description}";
+
+            var inversionText = string.Empty;
+            if (this.SelectedInversion != 0)
+            {
+                inversionText = $" - {this.SelectedInversion.ToString().ToLower()} inversion";
+            }
+
+            this.selectedChordInversionNotesLabel.Text = $"[{this.GetChordNoteNamesText(chord.Notes)}{inversionText}]";
+
+            // this.PlayChord(chord);
         }
 
         private void ClearKeySelection()
@@ -209,6 +283,13 @@
             var adjustedNotes = new List<int>(noteSequence);
             var adjustedNoteNames = new string[noteSequence.Count];
 
+            for (var inversionNote = 0;
+                inversionNote < Math.Min(this.inversionCombo.SelectedIndex, noteSequence.Count);
+                inversionNote++)
+            {
+                adjustedNotes[inversionNote] += 12;
+            }
+
             adjustedNotes.Sort();
 
             for (var noteIndex = 0; noteIndex < adjustedNotes.Count; noteIndex++)
@@ -218,5 +299,7 @@
 
             return string.Join("-", adjustedNoteNames);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
