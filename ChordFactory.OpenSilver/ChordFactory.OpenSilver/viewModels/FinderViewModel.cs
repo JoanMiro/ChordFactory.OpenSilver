@@ -22,16 +22,12 @@
 
         private Inversion selectedInversion;
         
-        public SettingsViewModel Settings { get; set; }
-
         public FinderViewModel()
         {
             this.FinderKeyboardTappedCommand = new DelegateCommand(this.OnFinderKeyboardTapped, this.FinderKeyboardTappedCanExecute);
             this.selectedInversion = this.Inversions[0];
             this.FinderChord = Chord.Create("Mystery Chord", new List<int>());
         }
-
-        public List<Chord> Chords { get; set; }
 
         public string FoundChordFullName
         {
@@ -129,7 +125,9 @@
         };
 
         public ICommand FinderKeyboardTappedCommand { get; set; }
-
+        
+        public List<Chord> Chords => this.MusicData.Chords;
+        
         private bool FinderKeyboardTappedCanExecute(object paramList)
         {
             return true;
@@ -178,7 +176,7 @@
 
             var finderRootOffset = inversionNotes.Length > 0 ? inversionNotes[0] : 0;
 
-            foreach (var chord in this.Chords.Where(c => c.Notes.Count == inversionNotes.Length))
+            foreach (var chord in this.MusicData.Chords.Where(c => c.Notes.Count == inversionNotes.Length))
             {
                 foreach (var chordNote in inversionNotes)
                 {

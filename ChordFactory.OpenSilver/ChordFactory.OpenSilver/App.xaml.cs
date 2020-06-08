@@ -11,6 +11,7 @@ namespace ChordFactory.OpenSilver
     using System.Threading.Tasks;
     using repositories;
     using viewModels;
+    using views;
 
     public sealed partial class App : Application
     {
@@ -38,14 +39,22 @@ namespace ChordFactory.OpenSilver
             }
 
             //Task.Run(this.LoadSettings);
-            this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel };
-            this.FinderViewModel = new FinderViewModel { Settings = this.SettingsViewModel };
-            this.SettingsPage = new SettingsPage();
+            this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel, MusicData = this.MusicData };
+            this.ChordKeyboardViewModel = new ChordKeyboardViewModel{ Settings = this.SettingsViewModel, MusicData = this.MusicData };
+            this.ScaleKeyboardViewModel = new ScaleKeyboardViewModel{ Settings = this.SettingsViewModel, MusicData = this.MusicData };
+            this.FinderViewModel = new FinderViewModel { Settings = this.SettingsViewModel, MusicData =  this.MusicData};
+            this.SettingsControl = new SettingsControl();
             var mainPage = new MainPage();
             Window.Current.Content = mainPage;
         }
 
-        public SettingsPage SettingsPage { get; set; }
+        public ScaleKeyboardViewModel ScaleKeyboardViewModel { get; set; }
+
+        public ChordKeyboardViewModel ChordKeyboardViewModel { get; set; }
+
+        public MusicData MusicData => new MusicData();
+
+        public SettingsControl SettingsControl { get; set; }
 
         public FinderViewModel FinderViewModel { get; set; }
 

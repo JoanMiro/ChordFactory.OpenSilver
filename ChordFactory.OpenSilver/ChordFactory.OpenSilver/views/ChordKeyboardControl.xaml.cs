@@ -1,4 +1,4 @@
-﻿namespace ChordFactory.OpenSilver
+﻿namespace ChordFactory.OpenSilver.views
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,9 @@
 
     using models;
 
-    
-    public partial class ChordKeyboardPage : Page, INotifyPropertyChanged
+    using viewModels;
+
+    public partial class ChordKeyboardControl : UserControl, INotifyPropertyChanged
     {
         //private const string WaveString = @"ChordFactory.OpenSilver;resources/media/PIANO_MED_{0}.mp3";
         private const string WaveString = @"ms-appx:///media/PIANO_MED_{0}.mp3";
@@ -38,12 +39,11 @@
         private int chordRootNote;
         private ComboBox chordsCombo;
 
-        private int finderRootNoteOffset;
         private ComboBox inversionCombo;
         private Run selectedChordInversionNotesLabel;
         private Run selectedChordLabel;
 
-        public ChordKeyboardPage()
+        public ChordKeyboardControl()
         {
             this.InitializeComponent();
             this.Loaded += this.MainPage_Loaded;
@@ -55,18 +55,17 @@
         {
         }
 
-        public MusicData MusicData { get; set; }
-
         public InversionEnum SelectedInversion { get; set; }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.MusicData = new MusicData();
-            this.DataContext = this.MusicData;
+            this.DataContext = ((App)Application.Current)?.ChordKeyboardViewModel;
+            this.ChordKeyboardViewModel.PropertyChanged += this.ChordKeyboardViewModelPropertyChanged;
+            this.ChordKeyboardViewModel.Settings.PropertyChanged += this.SettingsPropertyChanged;
+
             this.chordsCombo = this.FindName("ChordsComboBox") as ComboBox;
             this.selectedChordLabel = this.FindName("SelectedChordLabel") as Run;
             this.selectedChordInversionNotesLabel = this.FindName("SelectedChordInversionNotesLabel") as Run;
-
 
             this.inversionCombo = this.FindName("InversionCombo") as ComboBox;
 
@@ -103,6 +102,22 @@
             this.AdjustKeyboardAspectRatios();
         }
 
+        private void SettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // throw new NotImplementedException();
+        }
+
+        private void ChordKeyboardViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ChordRootNote")
+            {
+                //this.ShowChord();
+                // this.PlayChord();
+            }
+        }
+
+        public ChordKeyboardViewModel ChordKeyboardViewModel => this.DataContext as ChordKeyboardViewModel;
+        
         private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.AdjustKeyboardAspectRatios();
@@ -238,7 +253,7 @@
 
             // this.PlayChord(chord);
         }
-        
+
         private void ClearKeySelection()
         {
             this.chordKeys.ForEach(

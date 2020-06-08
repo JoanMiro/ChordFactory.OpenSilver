@@ -59,8 +59,9 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="AboutTab.xaml" />
     <None Remove="ChordFactory.xml" />
-    <None Remove="ChordKeyboardPage.xaml" />
+    <None Remove="ChordKeyboard.xaml" />
     <None Remove="controls\BlackPianoKey.xaml" />
     <None Remove="controls\ColourPicker.xaml" />
     <None Remove="controls\GrandStaff.xaml" />
@@ -71,8 +72,9 @@
     <None Remove="controls\TestControl.xaml" />
     <None Remove="controls\WhitePianoKey.xaml" />
     <None Remove="EmptyOpenSilverMigrationApplication.csproj.vspscc" />
-    <None Remove="FinderKeyboardPage.xaml" />
+    <None Remove="FinderKeyboard.xaml" />
     <None Remove="images\Bass_clef.svg" />
+    <None Remove="images\ColourPicker.png" />
     <None Remove="images\Treble_clef.svg" />
     <None Remove="MainPage - Copy.xaml" />
     <None Remove="media\A2.wma" />
@@ -166,26 +168,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ChordFactorySample.xml" />
+    <Content Include="views\AboutControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <Content Include="controls\ColourPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Content Include="ChordKeyboardPage.xaml">
+    <Content Include="views\ChordKeyboardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Content Include="FinderKeyboardPage.xaml">
+    <Content Include="views\FinderKeyboardControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Content Include="MainPage.xaml">
+    <Content Include="views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Content Include="SettingsPage.xaml">
+    <Content Include="views\SettingsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Content Include="ScaleKeyboardPage.xaml">
+    <Content Include="views\ScaleKeyboardControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <EmbeddedResource Include="images\ColourPicker.png" />
     <EmbeddedResource Include="media\PIANO_MED_A3.mp3" />
     <EmbeddedResource Include="media\PIANO_MED_A4.mp3" />
     <EmbeddedResource Include="media\PIANO_MED_A5.mp3" />
@@ -233,20 +239,8 @@
     <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ChordKeyboardPage.xaml.cs">
-      <DependentUpon>ChordKeyboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="FinderKeyboardPage.xaml.cs">
-      <DependentUpon>FinderKeyboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="MainPage.xaml.cs">
+    <Compile Update="views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="ScaleKeyboardPage.xaml.cs">
-      <DependentUpon>ScaleKeyboardPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -254,10 +248,6 @@
     <None Update="ChordFactorySchema.xsd">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="images\" />
   </ItemGroup>
   
 </Project>

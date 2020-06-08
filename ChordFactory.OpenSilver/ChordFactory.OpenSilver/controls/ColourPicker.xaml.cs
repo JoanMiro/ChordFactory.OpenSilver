@@ -7,7 +7,7 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    public partial class ColourPicker : Page
+    public partial class ColourPicker : UserControl
     {
         public static readonly DependencyProperty ColourProperty = DependencyProperty.Register(
             "Colour",
@@ -17,6 +17,7 @@
 
         private static readonly Dictionary<string, Color> ColourDictionary = new Dictionary<string, Color>();
         private ComboBox selectionPicker;
+        private Border colourPickerBoxView;
 
         public ColourPicker()
         {
@@ -33,15 +34,19 @@
 
         //public ComboBox SelectionPicker { get; private set; }
 
+
         public static Dictionary<string, Color> Colours
         {
             get
             {
                 if (ColourDictionary.Count == 0)
                 {
-                    foreach (var field in typeof(Color).GetFields(BindingFlags.Static | BindingFlags.Public))
+                    foreach (var field in typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public))
                     {
-                        ColourDictionary.Add(field.Name, (Color)field.GetValue(Application.Current));
+                        if (field.PropertyType == typeof(Color))
+                        {
+                            ColourDictionary.Add(field.Name, (Color)field.GetValue(Application.Current));
+                        }
                     }
                 }
 
@@ -52,6 +57,7 @@
         private void ColourPicker_Loaded(object sender, RoutedEventArgs e)
         {
             this.selectionPicker = this.FindName("SelectionPicker") as ComboBox;
+            this.colourPickerBoxView = this.FindName("ColourPickerBoxView") as Border;
             if (this.selectionPicker != null)
             {
                 foreach (var colorName in Colours.Keys)
@@ -70,6 +76,7 @@
         {
             var colorName = this.selectionPicker.Items[this.selectionPicker.SelectedIndex].ToString();
             this.Colour = Colours[colorName];
+            this.ColourPickerBoxView.Background = new SolidColorBrush(this.Colour);
         }
     }
 }

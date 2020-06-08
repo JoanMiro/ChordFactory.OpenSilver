@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="ChordFactory.OpenSilver.views.SettingsControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:ChordFactory.OpenSilver.controls" xmlns:local="clr-namespace:ChordFactory.OpenSilver">
+    <UserControl.Content>
+        <!--<ScrollViewer Margin="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ScrollViewer.Content>-->
+        <Grid x:Name="LayoutRoot" Margin="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Children>
+                <TextBlock x:Name="PageTitle" Grid.Row="0" Style="{StaticResource TitleLabel}" Text="Openfeature ChordFactory" />
+                <TextBlock Grid.Row="1" Style="{StaticResource HeaderLabel}" Text="Colours" />
+                <StackPanel Grid.Row="2" Margin="0,6,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Chord Black Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="BlackChordColourPicker" VerticalAlignment="Center" Colour="{Binding BlackKeySelectedChordColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Margin="0,0,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Chord White Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="WhiteChordColourPicker" VerticalAlignment="Center" Colour="{Binding WhiteKeySelectedChordColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Margin="0,0,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Scale Black Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="BlackScaleColourPicker" VerticalAlignment="Center" Colour="{Binding BlackKeySelectedScaleColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Margin="0,0,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Scale White Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="WhiteScaleColourPicker" VerticalAlignment="Center" Colour="{Binding WhiteKeySelectedScaleColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Grid.Row="6" Margin="0,0,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Finder Black Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="BlackFinderColourPicker" VerticalAlignment="Center" Colour="{Binding BlackKeySelectedFinderColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Grid.Row="7" Margin="0,0,0,2">
+                    <StackPanel.Children>
+                        <TextBlock VerticalAlignment="Center" Text="Finder White Key" Style="{StaticResource ParagraphText}" />
+                        <controls:ColourPicker x:Name="WhiteFinderColourPicker" VerticalAlignment="Center" Colour="{Binding WhiteKeySelectedFinderColour}" />
+                    </StackPanel.Children>
+                </StackPanel>
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           Style="{StaticResource HeaderLabel}"
+                           Text="Sound" />
+                <StackPanel Grid.Row="2" Grid.Column="1">
+                    <StackPanel.Children>
+                        <Grid Margin="0,2" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource ParagraphText}" Text="Play Chords/Scales?" />
+                                <ToggleButton Grid.Column="1" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding AudioIsEnabled}" />
+                            </Grid.Children>
+                        </Grid>
+                        <Grid Margin="0,2" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.Children>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource ParagraphText}" Text="Arpeggiate?" />
+                                <ToggleButton Grid.Column="1" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                              IsChecked="{Binding ArpeggiateIsEnabled}"
+                                              IsEnabled="{Binding AudioIsEnabled}" />
+                            </Grid.Children>
+                        </Grid>
+                    </StackPanel.Children>
+                </StackPanel>
+            </Grid.Children>
+        </Grid>
+    </UserControl.Content>
+</UserControl>

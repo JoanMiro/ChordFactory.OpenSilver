@@ -22,6 +22,9 @@
             set => this.SetProperty(ref this.title, value);
         }
 
+        public SettingsViewModel Settings { get; set; }
+        public MusicData MusicData { get; set; }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
                                       [CallerMemberName] string propertyName = "",
                                       Action onChanged = null)
