@@ -49,16 +49,18 @@
             <Style x:Key="TabControlStyle" TargetType="TabControl">
                 <Style.Setters>
                     <Setter Property="FontSize" Value="18" />
-                    <Setter Property="Background" Value="#1E6167" />
-                    <!--<Setter Property="Background" Value="DarkSlateGray" />-->
+                    <Setter Property="Background" Value="DarkSlateGray" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
                     <Setter Property="VerticalAlignment" Value="Stretch" />
                 </Style.Setters>
             </Style>
             <Style x:Key="TabItemStyle" TargetType="TabItem">
                 <Style.Setters>
-                    <Setter Property="Foreground" Value="DarkRed" />
-                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="Foreground" Value="DarkBlue" />
+                    <Setter Property="Background" Value="Silver" />
+                    <Setter Property="SelectedAccent" Value="PaleGoldenRod" />
+                    <Setter Property="SelectedForeground" Value="PaleGoldenRod" />
+                    <Setter Property="SelectedBackground" Value="DarkSlateGray" />
                 </Style.Setters>
             </Style>
         </ResourceDictionary>
