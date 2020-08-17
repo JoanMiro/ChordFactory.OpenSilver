@@ -14,10 +14,29 @@
 
     public partial class MainPage : Page
     {
+        private TabControl mainPageTabControl;
+
         public MainPage()
         {
             this.InitializeComponent();
+            this.Loaded += this.MainPageLoaded;
+        }
 
+        private void MainPageLoaded(object sender, RoutedEventArgs e)
+        {
+            this.mainPageTabControl = this.FindName("MainPageTabControl") as TabControl;
+            if (this.mainPageTabControl != null)
+            {
+                this.mainPageTabControl.SelectionChanged += this.MainPageTabControlSelectionChanged;
+            }
+        }
+
+        private async void MainPageTabControlSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((e.RemovedItems[0] as TabItem)?.Name == "SettingsControlTab")
+            {
+                await ((App)Application.Current).SettingsControl.SaveSettings();
+            }
         }
     }
 }

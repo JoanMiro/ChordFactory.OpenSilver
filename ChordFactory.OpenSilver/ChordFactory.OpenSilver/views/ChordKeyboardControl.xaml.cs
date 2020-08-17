@@ -236,8 +236,12 @@
             {
                 var adjustedNoteIndex = (note + this.chordRootNote) % 24;
                 var colourTag = (string)this.chordKeys[adjustedNoteIndex].Tag;
+                
                 this.chordKeys[adjustedNoteIndex].Background =
-                    new SolidColorBrush(colourTag == "Ivory" ? this.chordWhiteKeySelected : this.chordBlackKeySelected);
+                    new SolidColorBrush(colourTag == "Ivory" 
+                        ?  this.ViewModel.Settings.WhiteKeySelectedChordColour 
+                        : this.ViewModel.Settings.BlackKeySelectedChordColour);
+               
                 this.chordKeys[adjustedNoteIndex].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
             }
 
@@ -253,6 +257,8 @@
 
             // this.PlayChord(chord);
         }
+        
+        public ChordKeyboardViewModel ViewModel => this.DataContext as ChordKeyboardViewModel;
 
         private void ClearKeySelection()
         {

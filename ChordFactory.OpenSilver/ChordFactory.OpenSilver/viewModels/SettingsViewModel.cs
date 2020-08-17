@@ -1,10 +1,11 @@
 ﻿namespace ChordFactory.OpenSilver.viewModels
 {
-    using System.Drawing;
+    using System.Windows.Media;
+
     using extensions;
 
-    public class SettingsViewModel:BaseViewModel
-{
+    public class SettingsViewModel : BaseViewModel
+    {
         /// <summary>
         /// Arpeggiate is enabled
         /// </summary>
@@ -18,42 +19,42 @@
         /// <summary>
         /// The black key colour
         /// </summary>
-        private Color blackKeyColour = Color.FromArgb(0, 0, 0);
+        private Color blackKeyColour = Color.FromArgb(0, 0, 0, 0);
 
         /// <summary>
         /// The black key selected chord colour
         /// </summary>
-        private Color blackKeySelectedChordColour = Color.DarkOrange;
+        private Color blackKeySelectedChordColour = Colors.DarkOrange;
 
         /// <summary>
         /// The black key selected finder colour
         /// </summary>
-        private Color blackKeySelectedFinderColour = Color.DarkGoldenrod;
+        private Color blackKeySelectedFinderColour = Colors.DarkGoldenrod;
 
         /// <summary>
         /// The black key selected scale colour
         /// </summary>
-        private Color blackKeySelectedScaleColour = Color.DarkGreen;
+        private Color blackKeySelectedScaleColour = Colors.DarkGreen;
 
         /// <summary>
         /// The white key colour
         /// </summary>
-        private Color whiteKeyColour = Color.FromArgb(byte.MaxValue, byte.MaxValue, 240);
+        private Color whiteKeyColour = Color.FromArgb(byte.MaxValue, byte.MaxValue, byte.MaxValue, 240);
 
         /// <summary>
         /// The white key selected chord colour
         /// </summary>
-        private Color whiteKeySelectedChordColour = Color.LightSalmon;
+        private Color whiteKeySelectedChordColour = Colors.LightSalmon;
 
         /// <summary>
         /// The white key selected finder colour
         /// </summary>
-        private Color whiteKeySelectedFinderColour = Color.PaleGoldenrod;
+        private Color whiteKeySelectedFinderColour = Colors.PaleGoldenrod;
 
         /// <summary>
         /// The white key selected scale colour
         /// </summary>
-        private Color whiteKeySelectedScaleColour = Color.DarkSeaGreen;
+        private Color whiteKeySelectedScaleColour = Colors.DarkSeaGreen;
 
         /// <summary>
         /// The black key colour

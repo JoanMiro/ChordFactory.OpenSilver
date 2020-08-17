@@ -1,9 +1,9 @@
 ﻿namespace ChordFactory.OpenSilver.extensions
 {
     using System.Collections.Generic;
-    using System.Drawing;
     using System.Reflection;
     using System.Windows;
+    using System.Windows.Media;
 
     public static class ColourUtilities
     {
@@ -22,9 +22,12 @@
             {
                 if (ColourDictionary.Count == 0)
                 {
-                    foreach (var field in typeof(Color).GetFields(BindingFlags.Static | BindingFlags.Public))
+                    foreach (var field in typeof(Colors).GetProperties(BindingFlags.Static | BindingFlags.Public))
                     {
-                        ColourDictionary.Add(field.Name, (Color)field.GetValue(Application.Current));
+                        if (field.PropertyType == typeof(Color))
+                        {
+                            ColourDictionary.Add(field.Name, (Color)field.GetValue(Application.Current));
+                        }
                     }
                 }
 

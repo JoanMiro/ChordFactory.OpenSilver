@@ -15,12 +15,12 @@
     {
         //private const string WaveString = @"ChordFactory.OpenSilver;resources/media/PIANO_MED_{0}.mp3";
         private const string WaveString = @"ms-appx:///media/PIANO_MED_{0}.mp3";
-        private readonly Color chordBlackKeySelected = Colors.CadetBlue;
+        // private readonly Color chordBlackKeySelected = Colors.CadetBlue;
 
         private readonly Color chordKeyBorderSelected = Colors.DarkSlateBlue;
 
         private readonly List<Border> chordKeys = new List<Border>();
-        private readonly Color chordWhiteKeySelected = Colors.SkyBlue;
+        // private readonly Color chordWhiteKeySelected = Colors.SkyBlue;
         private readonly List<string> noteNames = new List<string> { "C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B" };
         /* ms-appx:///Audio/ */
 
@@ -67,8 +67,7 @@
 
         private void SettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-
-
+            this.ShowChord();
         }
 
         private void FinderViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -171,7 +170,11 @@
                 {
                     var colourTag = (string)this.chordKeys[note].Tag;
                     this.chordKeys[note].Background =
-                        new SolidColorBrush(colourTag == "Ivory" ? this.chordWhiteKeySelected : this.chordBlackKeySelected);
+                        new SolidColorBrush(
+                            colourTag == "Ivory"
+                                ? this.FinderViewModel.Settings.WhiteKeySelectedFinderColour
+                                : this.FinderViewModel.Settings.BlackKeySelectedFinderColour);
+
                     this.chordKeys[note].BorderBrush = new SolidColorBrush(this.chordKeyBorderSelected);
                 }
             }

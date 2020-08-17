@@ -17,12 +17,7 @@ namespace ChordFactory.OpenSilver
     {
         private SettingsViewModel settingsViewModel;
 
-        public App(): this(null)
-        {
-            
-        }
-        
-        public App(string databasePath)
+        public App()
         {
             this.InitializeComponent();
 
@@ -35,11 +30,11 @@ namespace ChordFactory.OpenSilver
             }
             else
             {
-               // this.SettingsRepository = new SettingsRepository(databasePath);
+               this.SettingsRepository = new SettingsRepository("chordFactorySettings.txt");
             }
 
-            //Task.Run(this.LoadSettings);
-            this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel, MusicData = this.MusicData };
+            Task.Run(this.LoadSettings);
+            //this.ChordDataViewModel = new ChordDataViewModel { Settings = this.SettingsViewModel, MusicData = this.MusicData };
             this.ChordKeyboardViewModel = new ChordKeyboardViewModel{ Settings = this.SettingsViewModel, MusicData = this.MusicData };
             this.ScaleKeyboardViewModel = new ScaleKeyboardViewModel{ Settings = this.SettingsViewModel, MusicData = this.MusicData };
             this.FinderViewModel = new FinderViewModel { Settings = this.SettingsViewModel, MusicData =  this.MusicData};
@@ -58,7 +53,7 @@ namespace ChordFactory.OpenSilver
 
         public FinderViewModel FinderViewModel { get; set; }
 
-        public ChordDataViewModel ChordDataViewModel { get; set; }
+        //public ChordDataViewModel ChordDataViewModel { get; set; }
 
         private async Task LoadSettings()
         {

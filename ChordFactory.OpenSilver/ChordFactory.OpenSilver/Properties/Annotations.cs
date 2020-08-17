@@ -127,7 +127,7 @@ namespace ChordFactory.OpenSilver.Annotations
     /// </param>
     public StringFormatMethodAttribute([NotNull] string formatParameterName)
     {
-      FormatParameterName = formatParameterName;
+            this.FormatParameterName = formatParameterName;
     }
 
     [NotNull] public string FormatParameterName { get; }
@@ -167,7 +167,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public ValueProviderAttribute([NotNull] string name)
     {
-      Name = name;
+            this.Name = name;
     }
 
     [NotNull] public string Name { get; }
@@ -196,24 +196,24 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public ValueRangeAttribute(long from, long to)
     {
-      From = from;
-      To = to;
+            this.From = from;
+            this.To = to;
     }
 
     public ValueRangeAttribute(ulong from, ulong to)
     {
-      From = from;
-      To = to;
+            this.From = from;
+            this.To = to;
     }
 
     public ValueRangeAttribute(long value)
     {
-      From = To = value;
+            this.From = this.To = value;
     }
 
     public ValueRangeAttribute(ulong value)
     {
-      From = To = value;
+            this.From = this.To = value;
     }
   }
 
@@ -290,7 +290,7 @@ namespace ChordFactory.OpenSilver.Annotations
     public NotifyPropertyChangedInvocatorAttribute() { }
     public NotifyPropertyChangedInvocatorAttribute([NotNull] string parameterName)
     {
-      ParameterName = parameterName;
+            this.ParameterName = parameterName;
     }
 
     [CanBeNull] public string ParameterName { get; }
@@ -348,8 +348,8 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public ContractAnnotationAttribute([NotNull] string contract, bool forceFullStates)
     {
-      Contract = contract;
-      ForceFullStates = forceFullStates;
+            this.Contract = contract;
+            this.ForceFullStates = forceFullStates;
     }
 
     [NotNull] public string Contract { get; }
@@ -373,7 +373,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public LocalizationRequiredAttribute(bool required)
     {
-      Required = required;
+            this.Required = required;
     }
 
     public bool Required { get; }
@@ -419,7 +419,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public BaseTypeRequiredAttribute([NotNull] Type baseType)
     {
-      BaseType = baseType;
+            this.BaseType = baseType;
     }
 
     [NotNull] public Type BaseType { get; }
@@ -443,8 +443,8 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
     {
-      UseKindFlags = useKindFlags;
-      TargetFlags = targetFlags;
+            this.UseKindFlags = useKindFlags;
+            this.TargetFlags = targetFlags;
     }
 
     public ImplicitUseKindFlags UseKindFlags { get; }
@@ -472,8 +472,8 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
     {
-      UseKindFlags = useKindFlags;
-      TargetFlags = targetFlags;
+            this.UseKindFlags = useKindFlags;
+            this.TargetFlags = targetFlags;
     }
 
     [UsedImplicitly] public ImplicitUseKindFlags UseKindFlags { get; }
@@ -531,7 +531,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public PublicAPIAttribute([NotNull] string comment)
     {
-      Comment = comment;
+            this.Comment = comment;
     }
 
     [CanBeNull] public string Comment { get; }
@@ -577,7 +577,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public MustUseReturnValueAttribute([NotNull] string justification)
     {
-      Justification = justification;
+            this.Justification = justification;
     }
 
     [CanBeNull] public string Justification { get; }
@@ -614,7 +614,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public PathReferenceAttribute([NotNull, PathReference] string basePath)
     {
-      BasePath = basePath;
+            this.BasePath = basePath;
     }
 
     [CanBeNull] public string BasePath { get; }
@@ -705,7 +705,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcAreaMasterLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -716,7 +716,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcAreaPartialViewLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -727,7 +727,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcAreaViewLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -738,7 +738,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcMasterLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -749,7 +749,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcPartialViewLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -760,7 +760,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspMvcViewLocationFormatAttribute([NotNull] string format)
     {
-      Format = format;
+            this.Format = format;
     }
 
     [NotNull] public string Format { get; }
@@ -779,7 +779,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public AspMvcActionAttribute([NotNull] string anonymousProperty)
     {
-      AnonymousProperty = anonymousProperty;
+            this.AnonymousProperty = anonymousProperty;
     }
 
     [CanBeNull] public string AnonymousProperty { get; }
@@ -797,7 +797,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public AspMvcAreaAttribute([NotNull] string anonymousProperty)
     {
-      AnonymousProperty = anonymousProperty;
+            this.AnonymousProperty = anonymousProperty;
     }
 
     [CanBeNull] public string AnonymousProperty { get; }
@@ -816,7 +816,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public AspMvcControllerAttribute([NotNull] string anonymousProperty)
     {
-      AnonymousProperty = anonymousProperty;
+            this.AnonymousProperty = anonymousProperty;
     }
 
     [CanBeNull] public string AnonymousProperty { get; }
@@ -919,7 +919,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public HtmlElementAttributesAttribute([NotNull] string name)
     {
-      Name = name;
+            this.Name = name;
     }
 
     [CanBeNull] public string Name { get; }
@@ -930,7 +930,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public HtmlAttributeValueAttribute([NotNull] string name)
     {
-      Name = name;
+            this.Name = name;
     }
 
     [NotNull] public string Name { get; }
@@ -976,7 +976,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public CollectionAccessAttribute(CollectionAccessType collectionAccessType)
     {
-      CollectionAccessType = collectionAccessType;
+            this.CollectionAccessType = collectionAccessType;
     }
 
     public CollectionAccessType CollectionAccessType { get; }
@@ -1017,7 +1017,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AssertionConditionAttribute(AssertionConditionType conditionType)
     {
-      ConditionType = conditionType;
+            this.ConditionType = conditionType;
     }
 
     public AssertionConditionType ConditionType { get; }
@@ -1126,8 +1126,8 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspChildControlTypeAttribute([NotNull] string tagName, [NotNull] Type controlType)
     {
-      TagName = tagName;
-      ControlType = controlType;
+            this.TagName = tagName;
+            this.ControlType = controlType;
     }
 
     [NotNull] public string TagName { get; }
@@ -1149,7 +1149,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public AspRequiredAttributeAttribute([NotNull] string attribute)
     {
-      Attribute = attribute;
+            this.Attribute = attribute;
     }
 
     [NotNull] public string Attribute { get; }
@@ -1162,7 +1162,7 @@ namespace ChordFactory.OpenSilver.Annotations
 
     public AspTypePropertyAttribute(bool createConstructorReferences)
     {
-      CreateConstructorReferences = createConstructorReferences;
+            this.CreateConstructorReferences = createConstructorReferences;
     }
   }
 
@@ -1171,7 +1171,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public RazorImportNamespaceAttribute([NotNull] string name)
     {
-      Name = name;
+            this.Name = name;
     }
 
     [NotNull] public string Name { get; }
@@ -1182,8 +1182,8 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public RazorInjectionAttribute([NotNull] string type, [NotNull] string fieldName)
     {
-      Type = type;
-      FieldName = fieldName;
+            this.Type = type;
+            this.FieldName = fieldName;
     }
 
     [NotNull] public string Type { get; }
@@ -1196,7 +1196,7 @@ namespace ChordFactory.OpenSilver.Annotations
   {
     public RazorDirectiveAttribute([NotNull] string directive)
     {
-      Directive = directive;
+            this.Directive = directive;
     }
 
     [NotNull] public string Directive { get; }
@@ -1207,12 +1207,12 @@ namespace ChordFactory.OpenSilver.Annotations
   {
       public RazorPageBaseTypeAttribute([NotNull] string baseType)
       {
-        BaseType = baseType;
+            this.BaseType = baseType;
       }
       public RazorPageBaseTypeAttribute([NotNull] string baseType, string pageName)
       {
-          BaseType = baseType;
-          PageName = pageName;
+            this.BaseType = baseType;
+            this.PageName = pageName;
       }
 
       [NotNull] public string BaseType { get; }

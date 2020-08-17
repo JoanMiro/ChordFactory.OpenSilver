@@ -2,31 +2,31 @@
     <Page.Content>
         <TabControl x:Name="MainPageTabControl" Grid.Row="1" Style="{StaticResource TabControlStyle}">
             <TabControl.Items>
-                <TabItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Header="Chords" IsSelected="True" Style="{StaticResource TabItemStyle}">
+                <TabItem x:Name="ChordKeyboardControlTab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Header="Chords" IsSelected="True" Style="{StaticResource TabItemStyle}">
                     <TabItem.Content>
                         <!--<TextBlock Margin="20" Text="Content of Tab 1" />-->
                         <local:ChordKeyboardControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem.Content>
                 </TabItem>
-                <TabItem Header="Scales" Style="{StaticResource TabItemStyle}">
+                <TabItem x:Name="ScaleKeyboardControlTab" Header="Scales" Style="{StaticResource TabItemStyle}">
                     <TabItem.Content>
                         <!--<TextBlock Margin="20" Text="Content of Tab 2" />-->
                         <local:ScaleKeyboardControl />
                     </TabItem.Content>
                 </TabItem>
-                <TabItem Header="Finder" Style="{StaticResource TabItemStyle}">
+                <TabItem x:Name="FinderKeyboardControlTab" Header="Finder" Style="{StaticResource TabItemStyle}">
                     <TabItem.Content>
                         <!--<TextBlock Margin="20" Text="Content of Tab 3" />-->
                         <local:FinderKeyboardControl />
                     </TabItem.Content>
                 </TabItem>
-                <TabItem Header="Settings" Style="{StaticResource TabItemStyle}">
+                <TabItem x:Name="SettingsControlTab" Header="Settings" Style="{StaticResource TabItemStyle}">
                     <TabItem.Content>
                         <!--<TextBlock Margin="20" Text="Settings Tab" />-->
                         <local:SettingsControl />
                     </TabItem.Content>
                 </TabItem>
-                <TabItem Header="About" Style="{StaticResource TabItemStyle}">
+                <TabItem x:Name="AboutControlTab" Header="About" Style="{StaticResource TabItemStyle}">
                     <TabItem.Content>
                         <!--<TextBlock Margin="20" Text="About Tab" />-->
                         <local:AboutControl />
